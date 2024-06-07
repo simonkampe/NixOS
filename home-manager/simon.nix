@@ -161,8 +161,10 @@
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
+
     settings = {
       command_timeout = 1000;
+      os.disabled = false;
     };
   };
 
@@ -173,6 +175,9 @@
 
   programs.eza = {
     enable = true;
+    extraOptions = [
+      "--icons" "-F" "-H" "--group-directories-first" "--git" "-1"
+    ];
   };
 
   programs.nix-index = {
