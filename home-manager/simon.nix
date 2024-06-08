@@ -143,6 +143,9 @@
       flake = "nix flake";
       cp = "xcp";
       cat = "bat";
+      z = "zellij";
+      za = "zellij attach";
+      zs = "zellij --session";
     };
   };
 
