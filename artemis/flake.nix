@@ -78,8 +78,10 @@
           common.nixosModules.services.gpg-agent
           common.nixosModules.services.printing
 
-          ({ pkgs, ... }:
+          ({ pkgs, lib, ... }:
           {
+            services.displayManager.sddm.wayland.enable = lib.mkForce false;
+
             environment.systemPackages = with pkgs; [
               # Browsers
               unstable.brave
@@ -100,7 +102,7 @@
               master.jetbrains.rust-rover
 
               # Note taking
-              master.obsidian
+              unstable.obsidian
 
               # Making
               inkscape
