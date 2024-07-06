@@ -120,6 +120,9 @@
               # Office
               unstable.libreoffice-qt
 
+              # Graphics
+              inkscape
+
               # Media
               unstable.spotify
               vlc
