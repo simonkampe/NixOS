@@ -122,6 +122,7 @@
 
               # Graphics
               inkscape
+              aseprite
 
               # Media
               unstable.spotify
