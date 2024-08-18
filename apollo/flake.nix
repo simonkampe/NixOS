@@ -110,12 +110,6 @@
               # Browsers
               unstable.brave
               unstable.chromium
-              unstable.firefox
-              unstable.microsoft-edge
-
-              # E-mail
-              unstable.thunderbird
-              unstable.mailspring
 
               # Office
               unstable.libreoffice-qt
