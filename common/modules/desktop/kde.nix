@@ -20,6 +20,7 @@
   services.power-profiles-daemon.enable = true;
 
   environment.systemPackages = with pkgs; [
+    wl-clipboard
     nordic
     kdePackages.powerdevil
     kdePackages.kio-gdrive
