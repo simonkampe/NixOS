@@ -138,7 +138,8 @@
               master.obsidian
 
               # Tooling
-              wireshark
+              unstable.wireshark
+              unstable.sniffnet
             ];
           })
         ];

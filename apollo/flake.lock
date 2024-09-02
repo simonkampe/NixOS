@@ -4,11 +4,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-v+tYjgQMC7xsG5EJ3hYN6souXuZV6D/mFxAMSKGOgJk=",
-        "path": "/nix/store/z312yd903m33wgnsjhhd1lj3q4hwkhsq-source/common",
+        "path": "/nix/store/07mhvpbf0x1qcdpbc38j4rgj98q9iax7-source/common",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/z312yd903m33wgnsjhhd1lj3q4hwkhsq-source/common",
+        "path": "/nix/store/07mhvpbf0x1qcdpbc38j4rgj98q9iax7-source/common",
         "type": "path"
       }
     },
