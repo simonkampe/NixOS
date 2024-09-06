@@ -113,7 +113,6 @@
 
               # Office
               unstable.onlyoffice-bin_latest
-              unstable.libreoffice-qt
 
               # Graphics
               inkscape

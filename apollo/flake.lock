@@ -3,12 +3,12 @@
     "common": {
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-v+tYjgQMC7xsG5EJ3hYN6souXuZV6D/mFxAMSKGOgJk=",
-        "path": "/nix/store/07mhvpbf0x1qcdpbc38j4rgj98q9iax7-source/common",
+        "narHash": "sha256-sZNui1zHj2NUwUKKOgPzKhmHU5hrvg8hQKLQsDWLd9s=",
+        "path": "/nix/store/2sbrwibbby0s4wypszlb1h9gd7ias0bq-source/common",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/07mhvpbf0x1qcdpbc38j4rgj98q9iax7-source/common",
+        "path": "/nix/store/2sbrwibbby0s4wypszlb1h9gd7ias0bq-source/common",
         "type": "path"
       }
     },

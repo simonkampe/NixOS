@@ -28,6 +28,7 @@
     kdePackages.kaccounts-integration
     kdePackages.filelight
     kdePackages.signond
+    kdePackages.skanlite
     kdePackages.kauth
     kdePackages.kontact
     kdePackages.kontactinterface
