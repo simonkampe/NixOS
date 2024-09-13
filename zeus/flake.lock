@@ -1,14 +1,32 @@
 {
   "nodes": {
+    "argon-eon": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1707687283,
+        "narHash": "sha256-+0+vY50BH59D92jzevVTuKe7AgoOuMSBHk5jglDpAQs=",
+        "ref": "refs/heads/main",
+        "rev": "35d86a623dd1960d5b318841b5277aaf57cce201",
+        "revCount": 3,
+        "type": "git",
+        "url": "ssh://git@github.com/simonkampe/argon-eon"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/simonkampe/argon-eon"
+      }
+    },
     "common": {
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-RhYhQutq/IVgEKHNV0WFttNiYKOu0jquIqauXh6LKj0=",
-        "path": "/nix/store/cc353ibg5i715s9x6dc07cbvrncvr6bn-source/common",
+        "narHash": "sha256-IBoL3QkGrDL07a1IOPwFnAO1uKIonxcGKmVqCYlU4f0=",
+        "path": "/nix/store/y1b3drwxrp1gs0y48qni13c2h9ddfvkw-source/common",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/cc353ibg5i715s9x6dc07cbvrncvr6bn-source/common",
+        "path": "/nix/store/y1b3drwxrp1gs0y48qni13c2h9ddfvkw-source/common",
         "type": "path"
       }
     },
@@ -29,6 +47,24 @@
       "original": {
         "owner": "nix-community",
         "repo": "disko",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     },
@@ -64,8 +100,41 @@
         "type": "github"
       }
     },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1707546158,
+        "narHash": "sha256-nYYJTpzfPMDxI8mzhQsYjIUX+grorqjKEU9Np6Xwy/0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d934204a0f8d9198e1e4515dd6fec76a139c87f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1725983898,
+        "narHash": "sha256-4b3A9zPpxAxLnkF9MawJNHDtOOl6ruL0r6Og1TEDGCE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1355a0cbfeac61d785b7183c0caaec1f97361b43",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "argon-eon": "argon-eon",
         "common": "common",
         "disko": "disko",
         "master": "master",
@@ -73,23 +142,59 @@
         "nixpkgs": [
           "stable"
         ],
+        "rpi-pwm-fan": "rpi-pwm-fan",
         "stable": "stable",
         "unstable": "unstable"
       }
     },
+    "rpi-pwm-fan": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1726117346,
+        "narHash": "sha256-NUsl2k9xdWwBuS7zzXvVO8QIXwCkx0RBsVfAxwVUXE4=",
+        "owner": "simonkampe",
+        "repo": "raspberry-pi-pwm-fan-2",
+        "rev": "dd23044015353229edf121d3bb2e9bf838578e1f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "simonkampe",
+        "ref": "nixify",
+        "repo": "raspberry-pi-pwm-fan-2",
+        "type": "github"
+      }
+    },
     "stable": {
       "locked": {
-        "lastModified": 1707091808,
-        "narHash": "sha256-LahKBAfGbY836gtpVNnWwBTIzN7yf/uYM/S0g393r0Y=",
+        "lastModified": 1725930920,
+        "narHash": "sha256-RVhD9hnlTT2nJzPHlAqrWqCkA7T6CYrP41IoVRkciZM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9f2ee8c91ac42da3ae6c6a1d21555f283458247e",
+        "rev": "44a71ff39c182edaf25a7ace5c9454e7cba2c658",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-23.11",
+        "ref": "nixos-24.05",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
         "type": "github"
       }
     },

@@ -6,7 +6,7 @@
     nixpkgs.follows = "stable";
 
     # Extra channels
-    stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     master.url = "github:NixOS/nixpkgs/master";
 
@@ -19,6 +19,9 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    argon-eon.url = "git+ssh://git@github.com/simonkampe/argon-eon";
+    rpi-pwm-fan.url = "github:simonkampe/raspberry-pi-pwm-fan-2/nixify";
   };
 
   outputs = inputs@{
@@ -27,6 +30,8 @@
     common,
     nixos-hardware,
     disko,
+    argon-eon,
+    rpi-pwm-fan,
     ...
   }:
   {
@@ -46,6 +51,9 @@
           system = final.system;
           config.allowUnfree = true;
         };
+
+        raspberry-pi-pwm-fan2 = rpi-pwm-fan.packages.${final.system}.raspberry-pi-pwm-fan-2;
+        argon = argon-eon.packages.${final.system}.argon-eon;
       })
     ];
 
@@ -83,17 +91,53 @@
 
           ({ pkgs, ... }:
           {
+            # Enable PWM for pwm-fan
+            hardware.raspberry-pi."4".pwm0.enable = true;
+
+            services.argoneon = {
+              enable = true;
+              package = pkgs.argon;
+              withFanControl = false;
+              withOledDisplay = true;
+              withPowerButton = true;
+            };
+          
             services.tailscale.enable = true;
 
             services.jellyfin = {
               enable = true;
               openFirewall = true;
             };
+
+            systemd.services."rpi-pwm-fan" = {
+              wantedBy = [ "multi-user.target" ];
+              after = [ "sysinit.target" ];
+
+              environment = {
+                PWM_FAN_BCM_GPIO_PIN_PWM = "18";
+                PWM_FAN_PWM_FREQ_HZ = "2500";
+                PWM_FAN_MIN_DUTY_CYCLE = "20";
+                PWM_FAN_MAX_DUTY_CYCLE = "100";
+                PWM_FAN_MIN_OFF_TEMP_C = "38";
+                PWM_FAN_MIN_ON_TEMP_C = "40";
+                PWM_FAN_MAX_TEMP_C = "46";
+                PWM_FAN_FAN_OFF_GRACE_MS = "60000";
+                PWM_FAN_SLEEP_MS = "250";
+              };
+
+              serviceConfig = {
+                ExecStart = "${pkgs.raspberry-pi-pwm-fan2}/bin/pwm_fan_control2";
+                Restart = "always";
+                Type = "simple";
+              };
+            };
             
             environment.systemPackages = with pkgs; [
               jellyfin
               jellyfin-web
               jellyfin-ffmpeg
+
+              raspberry-pi-pwm-fan2
             ];
           })
         ];
