@@ -48,6 +48,8 @@
 
   boot.swraid.enable = true;
 
+  nix.settings.trusted-users = [ "root" "@wheel" ];
+  
   users.users.simon = {
     description = "Simon Kämpe";
     isNormalUser = true;
