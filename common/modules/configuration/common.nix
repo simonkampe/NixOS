@@ -47,6 +47,8 @@
     nmap
     wget
     sqlite
+    tunctl
+    bridge-utils
 
     # Hardware
     glxinfo
