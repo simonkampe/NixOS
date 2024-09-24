@@ -70,5 +70,10 @@
     # Nix lang
     nil
     nixfmt-classic
+
+    # Wine
+    bottles
+    wineWowPackages.waylandFull
+    winetricks
   ];
 }

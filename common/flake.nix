@@ -16,6 +16,10 @@
         hardware = {
           uhk = import ./modules/applications/hardware/uhk.nix;
         };
+
+        virtualisation = {
+          qemu = import ./modules/applications/virtualisation/qemu.nix;
+        };
       };
 
       hardware = {

@@ -80,6 +80,7 @@
           # Applications
           common.nixosModules.applications.dev.vmware-workstation
           common.nixosModules.applications.dev.vscodium
+          common.nixosModules.applications.virtualisation.qemu
           
           # Services
           common.nixosModules.services.avahi
