@@ -12,7 +12,6 @@
   # Extra utilities
   home.packages = with pkgs; [
     git-crypt
-    toybox
   ];
 
   programs.direnv = {
