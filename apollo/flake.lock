@@ -4,11 +4,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-qwSDVAbC736xjwaIiLSvkZD0LdqNkClTti1sA543B7s=",
-        "path": "/nix/store/zsy0fv83hjy34day47ijjd62my6hrnqy-source/common",
+        "path": "/nix/store/1nypyswix0d53bb8ak1g6s7jzx3djlfz-source/common",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/zsy0fv83hjy34day47ijjd62my6hrnqy-source/common",
+        "path": "/nix/store/1nypyswix0d53bb8ak1g6s7jzx3djlfz-source/common",
         "type": "path"
       }
     },
@@ -53,6 +53,7 @@
           "unstable"
         ],
         "stable": "stable",
+        "tosibox-key": "tosibox-key",
         "unstable": "unstable"
       }
     },
@@ -70,6 +71,23 @@
         "ref": "nixos-24.05",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "tosibox-key": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 0,
+        "narHash": "sha256-37Wi7f7O2GIjEssWwTBdANhN3gnYAHN3v0Qt951zLc0=",
+        "path": "/nix/store/1nypyswix0d53bb8ak1g6s7jzx3djlfz-source/apollo/external/tosibox-key",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/1nypyswix0d53bb8ak1g6s7jzx3djlfz-source/apollo/external/tosibox-key",
+        "type": "path"
       }
     },
     "unstable": {

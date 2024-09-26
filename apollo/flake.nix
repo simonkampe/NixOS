@@ -16,6 +16,10 @@
 
     # Utilities
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    tosibox-key = {
+      url = "./external/tosibox-key";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{
@@ -23,6 +27,7 @@
     nixpkgs,
     common,
     nixos-hardware,
+    tosibox-key,
     ...
   }:
   let
@@ -105,7 +110,13 @@
               tailscale.enable = true;
               flatpak.enable = true;
               fwupd.enable = true;
+
+              udev.packages = [ tosibox-key.packages.x86_64-linux.tosiboxkey ];
             };
+
+            security.sudo.extraConfig = ''
+              %wheel ALL=(root) NOPASSWD: ${tosibox-key.packages.x86_64-linux.tosiboxkey}/bin/openvpn
+            '';
 
             environment.systemPackages = with pkgs; [
               # Browsers
@@ -141,6 +152,7 @@
               # Tooling
               unstable.wireshark
               unstable.sniffnet
+              tosibox-key.packages.x86_64-linux.tosiboxkey
             ];
           })
         ];
