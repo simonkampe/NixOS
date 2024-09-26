@@ -133,6 +133,7 @@
               unstable.jetbrains.rider
               unstable.jetbrains.rust-rover
               unstable.jetbrains.idea-ultimate
+              beekeeper-studio
 
               # Note taking
               master.obsidian
