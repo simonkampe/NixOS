@@ -144,7 +144,7 @@
               unstable.jetbrains.rider
               unstable.jetbrains.rust-rover
               unstable.jetbrains.idea-ultimate
-              beekeeper-studio
+              unstable.jetbrains.datagrip
 
               # Note taking
               master.obsidian
