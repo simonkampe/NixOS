@@ -28,7 +28,6 @@
     kdePackages.kaccounts-integration
     kdePackages.filelight
     kdePackages.signond
-    kdePackages.skanlite
     kdePackages.kauth
     kdePackages.kontact
     kdePackages.kontactinterface
@@ -41,6 +40,7 @@
     kdePackages.kmail
     kdePackages.kmail-account-wizard
     kdePackages.kmailtransport
+    kdePackages.skanpage
     kdePackages.kdepim-addons
     kdePackages.kdepim-runtime
     kdePackages.akonadi
