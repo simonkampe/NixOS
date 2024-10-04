@@ -3,12 +3,7 @@
 
   inputs = {
     # System
-    nixpkgs.follows = "stable";
-
-    # Extra channels
-    stable.url = "github:NixOS/nixpkgs/nixos-23.11";
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # Home manager
     home-manager = {
@@ -16,13 +11,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-inspect.url = "github:bluskript/nix-inspect";
+    nix-inspect = {
+      url = "github:bluskript/nix-inspect";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{
     self,
     nixpkgs,
     home-manager,
+    nix-inspect,
+    agenix,
     ...
   }:
   let
@@ -51,13 +56,15 @@
 
     homeConfigurations = {
       simon = home-manager.lib.homeManagerConfiguration {
-        pkgs = (import inputs.unstable) {
+        pkgs = (import nixpkgs) {
           system = "x86_64-linux";
           config.allowUnfree = true;
           overlays = self.overlays;
         };
 
         modules = [
+          agenix.homeManagerModules.age
+
           ./simon.nix
           ./devtools.nix
           ./helix.nix
@@ -69,7 +76,8 @@
               tela-icon-theme
               qogir-icon-theme # Qogir cursors
               libsForQt5.lightly
-              inputs.nix-inspect.packages.x86_64-linux.default
+              nix-inspect.packages.x86_64-linux.default
+              agenix.packages."${system}".default
             ];
           })
         ];

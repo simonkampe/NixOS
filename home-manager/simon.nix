@@ -25,6 +25,10 @@
     any-nix-shell
   ];
 
+  age.secrets.access-tokens = {
+    file = /home/simon/.secrets/access-tokens.age;
+  };
+
   nix = {
     package = pkgs.nix;
 
@@ -35,6 +39,7 @@
 
     extraOptions = ''
       experimental-features = nix-command flakes
+      !include ${builtins.replaceStrings [ "\${XDG_RUNTIME_DIR}/" ] [ "/run/user/1000/" ] config.age.secrets.access-tokens.path}
     '';
   };
 
