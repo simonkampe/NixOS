@@ -46,7 +46,7 @@
         master = import inputs.master {
           system = final.system;
           config.allowUnfree = true;
-          config.permittedInsecurePackages = [ "snapmaker-luban-4.9.1" "electron-25.9.0" ];
+          config.permittedInsecurePackages = [ ];
         };
 
         #extras = import inputs.extras {
@@ -84,13 +84,12 @@
 
           # Applications
           common.nixosModules.applications.dev.vmware-workstation
-          common.nixosModules.applications.dev.vscodium
           common.nixosModules.applications.virtualisation.qemu
+          common.nixosModules.applications.gaming.steam
           
           # Services
           common.nixosModules.services.avahi
           common.nixosModules.services.clamav
-          common.nixosModules.services.globalprotect
           common.nixosModules.services.gpg-agent
           common.nixosModules.services.printing
 
@@ -147,7 +146,7 @@
               unstable.jetbrains.datagrip
 
               # Note taking
-              master.obsidian
+              unstable.obsidian
 
               # Tooling
               unstable.wireshark
