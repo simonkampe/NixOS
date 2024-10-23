@@ -24,6 +24,7 @@
     comfortaa
     noto-fonts
     material-design-icons
+    wineWowPackages.fonts
   ];
 
   # nix options for derivations to persist garbage collection

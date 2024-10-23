@@ -3,7 +3,7 @@
 
   inputs = {
     # System
-    nixpkgs.follows = "stable";
+    nixpkgs.follows = "unstable";
 
     # Extra channels
     stable.url = "github:NixOS/nixpkgs/nixos-24.05";
