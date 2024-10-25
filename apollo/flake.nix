@@ -46,7 +46,9 @@
         master = import inputs.master {
           system = final.system;
           config.allowUnfree = true;
-          config.permittedInsecurePackages = [ ];
+          config.permittedInsecurePackages = [
+            "olm-3.2.16" # Nheko
+          ];
         };
 
         #extras = import inputs.extras {
@@ -135,6 +137,7 @@
 
               # Social
               master.discord
+              master.nheko
 
               # Dev tools
               unstable.jetbrains.clion
