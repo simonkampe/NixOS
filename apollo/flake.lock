@@ -3,12 +3,12 @@
     "common": {
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-fNFKm8Ya6rb84AfNo4jGjOzqDc032AP4DqQSv03SOsg=",
-        "path": "/nix/store/ly8hwd1qvr89nj3wf045fmfy9995942q-source/common",
+        "narHash": "sha256-9vf8IjMr7ihyAGd7OgGXyNq3ETPlNCrK46QJ2cuLYrU=",
+        "path": "/nix/store/igmv54lvlg2xamhfkkj6bcxl54klsjs4-source/common",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/ly8hwd1qvr89nj3wf045fmfy9995942q-source/common",
+        "path": "/nix/store/igmv54lvlg2xamhfkkj6bcxl54klsjs4-source/common",
         "type": "path"
       }
     },
@@ -82,11 +82,11 @@
       "locked": {
         "lastModified": 0,
         "narHash": "sha256-4P6ajzxpgL4tUAyGYl0IJIaohVHatQ+NJ9kXnko1qwk=",
-        "path": "/nix/store/ly8hwd1qvr89nj3wf045fmfy9995942q-source/apollo/external/tosibox-key",
+        "path": "/nix/store/igmv54lvlg2xamhfkkj6bcxl54klsjs4-source/apollo/external/tosibox-key",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/ly8hwd1qvr89nj3wf045fmfy9995942q-source/apollo/external/tosibox-key",
+        "path": "/nix/store/igmv54lvlg2xamhfkkj6bcxl54klsjs4-source/apollo/external/tosibox-key",
         "type": "path"
       }
     },

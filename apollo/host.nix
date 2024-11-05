@@ -130,9 +130,9 @@ in {
     };
 
   fileSystems."/data" =
-    { device = "/dev/disk/by-label/Data";
+    { device = "/dev/disk/by-label/data";
       fsType = "auto";
-      options = [ "defaults" "nofail" "user" "rw" "utf8" "auto" "uid=1000" "gid=1000" "umask=022" ];
+      options = [ "defaults" "nofail" "compress=zstd:1" "commit=120" "ssd" "acl" ];
     };
 
   swapDevices =
