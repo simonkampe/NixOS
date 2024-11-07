@@ -55,7 +55,7 @@
       set -gx NIX_SHELL_PRESERVE_PROMPT 1
 
       fish_add_path /home/simon/.cargo/bin
-
+      fish_add_path /home/simon/.node_modules/bin
 
       set -gx ATUIN_NOBIND "true"
       atuin init fish | source
