@@ -147,6 +147,11 @@
               unstable.jetbrains.rust-rover
               unstable.jetbrains.idea-ultimate
               unstable.jetbrains.datagrip
+              (unstable.vscodium.fhsWithPackages (ps: with ps; [
+                nodejs
+                stdenv.cc.cc.lib
+                dotnetCorePackages.sdk_6_0
+              ]))
 
               # Note taking
               unstable.obsidian
