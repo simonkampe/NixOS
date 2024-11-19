@@ -17,7 +17,7 @@
     # Utilities
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     tosibox-key = {
-      url = "./external/tosibox-key";
+      url = "path:/home/simon/Workspace/Personal/NixOS/apollo/external/tosibox-key";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -107,7 +107,6 @@
             security.polkit.enable = true;
 
             services = {
-              teamviewer.enable = true;
               tailscale.enable = true;
               flatpak.enable = true;
               fwupd.enable = true;
@@ -159,6 +158,7 @@
               # Tooling
               unstable.wireshark
               unstable.sniffnet
+              unstable.teamviewer
               tosibox-key.packages.x86_64-linux.tosiboxkey
             ];
           })
