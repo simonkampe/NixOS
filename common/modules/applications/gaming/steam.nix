@@ -8,10 +8,6 @@
     gamescopeSession.enable = true;
   };
 
-  hardware.opengl = {
-    driSupport32Bit = true;
-  };
-
   environment.systemPackages = with pkgs; [
     protonup-ng
   ];
