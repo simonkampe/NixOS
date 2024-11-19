@@ -4,6 +4,34 @@
   programs.helix = {
     enable = true;
 
+    languages = {
+      language-server = {
+        structured-text-language-server = {
+          command = "apax";
+          args = [ "st-ls" ];
+        };
+      };
+      
+      language = [
+        {
+          name = "structured-text";
+          scope = "source.st";
+          file-types = [ "st" ];
+          language-servers = [ "structured-text-language-server" ];
+        }
+      ];
+
+      grammar = [
+        {
+          name  = "structured-text";
+          source = {
+            git = "https://github.com/tmatijevich/tree-sitter-structured-text.git";
+            rev = "4334b32e4a9b4d9926ceaa6a768c2603ae275e41";
+          };
+        }
+      ];
+    };
+
     settings = {
       theme = "nord";
 

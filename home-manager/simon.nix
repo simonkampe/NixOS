@@ -153,6 +153,8 @@
 
     shellAliases = {
       flake = "nix flake";
+      htop = "btop";
+      top = "btop";
       cp = "xcp";
       cat = "bat";
       z = "zellij";
@@ -215,6 +217,10 @@
         };
       };
     };
+  };
+
+  programs.btop = {
+    enable = true;
   };
 
   services.gpg-agent = {

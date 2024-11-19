@@ -20,6 +20,8 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    apax-cli.url = "path:/home/simon/Workspace/Simra/apax";
   };
 
   outputs = inputs@{
@@ -28,11 +30,9 @@
     home-manager,
     nix-inspect,
     agenix,
+    apax-cli,
     ...
   }:
-  let
-    inherit (builtins) attrValues;
-  in
   {
     overlays = [
       (final: prev: {
@@ -51,6 +51,8 @@
           config.allowUnfree = true;
           config.permittedInsecurePackages = [ "snapmaker-luban-4.9.1" "electron-25.9.0" ];
         };
+
+        apax = apax-cli.packages.${final.system}.apax;
       })
     ];
 
@@ -78,6 +80,7 @@
               libsForQt5.lightly
               nix-inspect.packages.x86_64-linux.default
               agenix.packages."${system}".default
+              apax
             ];
           })
         ];
