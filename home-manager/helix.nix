@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nix-treesitter, ... }:
 
 {
   programs.helix = {
@@ -18,16 +18,6 @@
           scope = "source.st";
           file-types = [ "st" ];
           language-servers = [ "structured-text-language-server" ];
-        }
-      ];
-
-      grammar = [
-        {
-          name  = "structured-text";
-          source = {
-            git = "https://github.com/tmatijevich/tree-sitter-structured-text.git";
-            rev = "4334b32e4a9b4d9926ceaa6a768c2603ae275e41";
-          };
         }
       ];
     };

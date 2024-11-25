@@ -21,7 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    apax-cli.url = "path:/home/simon/Workspace/Simra/apax";
+    nix-treesitter = {
+      url = "github:ratson/nix-treesitter";
+    };
+
+    apax-cli.url = "path:/home/simon/Workspace/Clients/ESAB/Adaptio/PLC/apax";
   };
 
   outputs = inputs@{
@@ -30,6 +34,7 @@
     home-manager,
     nix-inspect,
     agenix,
+    nix-treesitter,
     apax-cli,
     ...
   }:
@@ -80,6 +85,7 @@
               libsForQt5.lightly
               nix-inspect.packages.x86_64-linux.default
               agenix.packages."${system}".default
+              nix-treesitter.packages.${system}.tree-sitter-structured-text
               apax
             ];
           })
