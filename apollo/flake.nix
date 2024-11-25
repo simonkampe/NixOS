@@ -151,6 +151,7 @@
                 stdenv.cc.cc.lib
                 dotnetCorePackages.sdk_6_0
               ]))
+              unstable.bluej
 
               # Note taking
               unstable.obsidian
