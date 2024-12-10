@@ -26,7 +26,7 @@
   ];
 
   age.secrets = {
-    access-tokens.file = /home/simon/.secrets/access-tokens.age;
+    gitlab-token.file = /home/simon/.secrets/gitlab-token.age;
     github-token.file = /home/simon/.secrets/github-token.age;
   };
 
@@ -40,7 +40,7 @@
 
     extraOptions = ''
       experimental-features = nix-command flakes
-      !include ${builtins.replaceStrings [ "\${XDG_RUNTIME_DIR}/" ] [ "/run/user/1000/" ] config.age.secrets.access-tokens.path}
+      !include ${builtins.replaceStrings [ "\${XDG_RUNTIME_DIR}/" ] [ "/run/user/1000/" ] config.age.secrets.gitlab-token.path}
     '';
   };
 
@@ -56,6 +56,7 @@
       set -gx NIX_SHELL_PRESERVE_PROMPT 1
 
       set -gx GITHUB_TOKEN $(cat ${builtins.replaceStrings [ "\${XDG_RUNTIME_DIR}/" ] [ "/run/user/1000/" ] config.age.secrets.github-token.path})
+      set -gx GITLAB_TOKEN $(cat ${builtins.replaceStrings [ "\${XDG_RUNTIME_DIR}/" ] [ "/run/user/1000/" ] config.age.secrets.github-token.path} | sed -E 's|.*:(.*)|\1|')
 
       fish_add_path /home/simon/.cargo/bin
       fish_add_path /home/simon/.node_modules/bin
