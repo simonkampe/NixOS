@@ -111,6 +111,14 @@
               flatpak.enable = true;
               fwupd.enable = true;
 
+              ollama = {
+                enable = true;
+                acceleration = "cuda";
+              };
+
+              open-webui.enable = true;
+
+
               udev.packages = [ tosibox-key.packages.x86_64-linux.tosiboxkey ];
             };
 
