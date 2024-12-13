@@ -11,11 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-inspect = {
-      url = "github:bluskript/nix-inspect";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,18 +19,14 @@
     nix-treesitter = {
       url = "github:ratson/nix-treesitter";
     };
-
-    apax-cli.url = "path:/home/simon/Workspace/Clients/ESAB/Adaptio/PLC/apax";
   };
 
   outputs = inputs@{
     self,
     nixpkgs,
     home-manager,
-    nix-inspect,
     agenix,
     nix-treesitter,
-    apax-cli,
     ...
   }:
   {
@@ -54,10 +45,8 @@
         master = import inputs.master {
           system = final.system;
           config.allowUnfree = true;
-          config.permittedInsecurePackages = [ "snapmaker-luban-4.9.1" "electron-25.9.0" ];
+          config.permittedInsecurePackages = [ ];
         };
-
-        apax = apax-cli.packages.${final.system}.apax;
       })
     ];
 
@@ -75,7 +64,6 @@
           ./simon.nix
           ./devtools.nix
           ./helix.nix
-          ./office.nix
 
           ({ pkgs, ... }:
           {
@@ -83,10 +71,8 @@
               tela-icon-theme
               qogir-icon-theme # Qogir cursors
               libsForQt5.lightly
-              nix-inspect.packages.x86_64-linux.default
-              agenix.packages."${system}".default
+              agenix.packages.${system}.default
               nix-treesitter.packages.${system}.tree-sitter-structured-text
-              apax
             ];
           })
         ];
