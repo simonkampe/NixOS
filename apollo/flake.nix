@@ -16,8 +16,14 @@
 
     # Utilities
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     tosibox-key = {
       url = "path:/home/simon/Workspace/Personal/NixOS/apollo/external/tosibox-key";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    apax-cli = {
+      url = "path:/home/simon/Workspace/Clients/ESAB/Adaptio/PLC/apax";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -28,6 +34,7 @@
     common,
     nixos-hardware,
     tosibox-key,
+    apax-cli,
     ...
   }:
   let
@@ -118,7 +125,6 @@
 
               open-webui.enable = true;
 
-
               udev.packages = [ tosibox-key.packages.x86_64-linux.tosiboxkey ];
             };
 
@@ -169,6 +175,7 @@
               unstable.sniffnet
               unstable.teamviewer
               tosibox-key.packages.x86_64-linux.tosiboxkey
+              apax-cli.packages.x86_64-linux.apax
             ];
           })
         ];
