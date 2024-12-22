@@ -63,6 +63,8 @@
 
           ./simon.nix
           ./devtools.nix
+          ./git.nix
+          ./shell.nix
           ./helix.nix
 
           ({ pkgs, ... }:

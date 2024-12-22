@@ -1,8 +1,14 @@
 {
   description = "";
 
-  outputs = _: {
-    nixosModules = {
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+  };
+
+  outputs = { nixpkgs }: {
+    nixosModules = let
+      pkgs = import <nixpkgs> { inherit system; };
+    in {
       applications = {
         dev = {
           vmware-workstation = import ./modules/applications/dev/vmware-workstation.nix;
