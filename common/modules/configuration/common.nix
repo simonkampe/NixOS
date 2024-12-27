@@ -19,7 +19,7 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    fira-code-nerdfont
     ibm-plex
     comfortaa
     noto-fonts

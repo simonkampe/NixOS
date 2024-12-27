@@ -1,30 +1,5 @@
 { config, pkgs, lib, modulesPath, ... }:
 {
-  programs.fish.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.simon = {
-    description = "Simon Kämpe";
-    isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "wireshark" "lp" "networkmanager" "input" "audio" "libvirtd" "adbusers" ];
-    password = "changethis";
-    shell = pkgs.fish;
-  };
-  
-  networking = {
-    hostName = "artemis";
-    networkmanager.enable = true;
-    useDHCP = lib.mkDefault true;
-  };
-
-  nix = {
-    settings.auto-optimise-store = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-    };
-  };
-
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
   hardware = {
@@ -113,7 +88,7 @@
 
   fileSystems."/data" =
   {
-    device = "/dev/disk/by-label/data";
+    device = "/dev/disk/by-label/data1";
     fsType = "ext4";
     options = [ "nofail" ];
   };

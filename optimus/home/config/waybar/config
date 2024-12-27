@@ -1,0 +1,123 @@
+{
+  "layer": "top",
+  "position": "center",
+  "height": 38,
+  "width": 1280,
+  "margin": "2",
+  "spacing": 2,
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/sep",
+    "hyprland/window"
+  ],
+  "modules-center": [
+  ],
+  "modules-right": [
+    "tray",
+    "custom/sep",
+    "temperature",
+    "custom/sep",
+    "pulseaudio",
+    "custom/sep",
+    "clock",
+    "custom/sep",
+    "custom/notifications",
+    "custom/powermenu"
+  ],
+  "custom/sep": {
+    "format": "|"
+  },
+  "custom/powermenu": {
+    "on-click": "~/.config/wofi/scripts/wofipowermenu.py",
+    "format": "",
+    "tooltip": false
+  },
+  "custom/bluetooth_devices": {
+    "exec": "$HOME/.config/waybar/custom_modules/bluetooth_devices.sh",
+    "return-type": "json",
+    "format": "{}",
+    "justify": "center",
+    "interval": 5,
+    "on-click": "blueman-manager"
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "format-icons": {
+      "active": "",
+      "urgent": "",
+      "default": ""
+    }
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "separate-outputs": true,
+    "rewrite": {
+      "(.*) - Mozilla Firefox": "🌎 $1",
+      "(.*) - Brave": "🌎 $1",
+    }
+  },
+  "clock": {
+    "tooltip": true,
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%Y-%m-%d}",
+  },
+  "tray": {
+    "icon-size": 18,
+    "show-passive-items": "true"
+  },
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "critical-threshold": 80,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": "MUTE ",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "󰋎",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        ""
+      ]
+    },
+    "scroll-step": 3,
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 2%-"
+  },
+  "custom/notifications": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "󰂛<span foreground='red'><sup></sup></span>",
+      "dnd-none": "󰂛",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": "",
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+    "escape": true
+  }
+}
