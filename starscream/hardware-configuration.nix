@@ -11,6 +11,11 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+
+      extraPackages = with pkgs; [
+        intel-media-driver
+        vpl-gpu-rt
+      ];
     };
 
     nvidia = {
@@ -60,9 +65,24 @@
   boot = {
     consoleLogLevel = 3;
 
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_latest;
+
+    kernelModules = [ "kvm-intel" ];
 
     supportedFilesystems = [ "ntfs" "nfs" ];
+
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+
+      kernelModules = [ "dm-snapshot" "cryptd" "i915" ];
+
+      luks.devices = {
+        "cryptroot".device = "/dev/disk/by-label/luksroot";
+        "cryptdata".device = "/dev/nvme1n1";
+      };
+
+      systemd.enable = true;
+    };
 
     loader = {
       systemd-boot.enable = true;
@@ -79,22 +99,23 @@
       ];
 
     fileSystems."/" =
-      { device = "/dev/disk/by-uuid/331bd8a9-fc5a-4c63-950a-b72cb620c43f";
-        fsType = "ext4";
-      };
-
-    fileSystems."/boot" =
-      { device = "/dev/disk/by-uuid/783A-7EE1";
-        fsType = "vfat";
+      { device = "/dev/disk/by-label/root";
+        fsType = "btrfs";
       };
 
     fileSystems."/data" =
       { device = "/dev/disk/by-label/data";
-        fsType = "auto";
-        options = [ "defaults" "nofail" "compress=zstd:1" "commit=120" "ssd" "acl" ];
+        fsType = "btrfs";  
+        options = [ "defaults" "nofail" ];
+      };
+
+    fileSystems."/boot" =
+      { device = "/dev/disk/by-label/boot";
+        fsType = "vfat";
+        options = [ "fmask=0077" "dmask=0077" ];
       };
 
     swapDevices =
-      [ { device = "/dev/disk/by-uuid/9052965d-f010-4606-a837-b52676963706"; }
+      [ { device = "/dev/disk/by-label/swap"; }
       ];
 }

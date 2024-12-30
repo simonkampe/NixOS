@@ -103,8 +103,6 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
 
-          agenix.nixosModules.default
-
           inputs.tosibox-key.nixosModules.tosibox-key
         ];
       };

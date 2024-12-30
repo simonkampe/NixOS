@@ -1,0 +1,8 @@
+[includeIf "gitdir:~/workspace/work/ESAB/"]
+  path = gitidentity-esab
+[includeIf "gitdir:~/workspace/work/Linetic/"]
+  path = gitidentity-linetic
+[includeIf "gitdir:~/workspace/simra/"]
+  path = gitidentity-simra
+[includeIf "gitdir:**"]
+  path = gitidentity-personal

@@ -20,6 +20,18 @@
     ../../home/helix.nix
   ];
 
+  home.packages = with pkgs; [
+    agenix
+  ];
+
+  xdg = {
+    enable = true;
+    configFile."git" = {
+      source = ./config/git;
+      recursive = true;
+    };
+  };
+
   age.secrets = {
     gitlab-token.file = /home/simon/.secrets/gitlab-token.age;
     github-token.file = /home/simon/.secrets/github-token.age;

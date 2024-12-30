@@ -214,6 +214,7 @@
       p7zip
       fontconfig
       pavucontrol
+      gparted
     ];
   };
 

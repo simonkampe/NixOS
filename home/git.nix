@@ -31,7 +31,7 @@
     # name = Simon Kämpe
     # email = simon.kampe@gmail.com
     includes = [
-      { path = "~/.gitconfig-identity"; }
+      { path = "~/.config/git/gitidentity"; }
     ];
 
     extraConfig = {
