@@ -1,6 +1,0 @@
-[submodule "apollo/tosibox-key"]
-	path = apollo/external/tosibox-key
-	url = git@gitlab.com:esab/abw/tosibox-key.git
-[submodule "apollo/external/tosibox-key"]
-	path = apollo/external/tosibox-key
-	url = git@gitlab.com:esab/abw/tosibox-key.git

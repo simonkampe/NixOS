@@ -1,0 +1,106 @@
+{ inputs, pkgs, ... }:
+
+{
+  imports = [
+    inputs.hyprpanel.homeManagerModules.hyprpanel
+  ];
+
+  home.packages = with pkgs; [
+    python3Full
+    gpustat
+    brightnessctl
+    grimblast
+    gpu-screen-recorder
+    hyprpicker
+    hyprsunset
+    hypridle
+    hyprlock
+    btop
+  ];
+
+  programs.hyprpanel = {
+    # Enable the module.
+    # Default: false
+    enable = true;
+
+    # Automatically restart HyprPanel with systemd.
+    # Useful when updating your config so that you
+    # don't need to manually restart it.
+    # Default: false
+    systemd.enable = true;
+
+    # Add '/nix/store/.../hyprpanel' to the
+    # 'exec-once' in your Hyprland config.
+    # Default: false
+    hyprland.enable = false;
+
+    # Fix the overwrite issue with HyprPanel.
+    # See below for more information.
+    # Default: false
+    overwrite.enable = true;
+
+    # Import a specific theme from './themes/*.json'.
+    # Default: ""
+    theme = "one_dark_vivid";
+
+    # Configure bar layouts for monitors.
+    # See 'https://hyprpanel.com/configuration/panel.html'.
+    # Default: null
+    layout = {
+      "bar.layouts" = {
+        "*" = {
+          left = [ "dashboard" "power" "workspaces" "windowtitle" ];
+          middle = [ "media" "notifications" ];
+          right = [ "volume" "network" "bluetooth" "battery" "hypridle" "hyprsunset" "systray" "clock" ];
+        };
+      };
+    };
+
+    # Configure and theme *most* of the options from the GUI.
+    # See './nix/module.nix:103'.
+    # Default: <same as gui>
+    settings = {
+      bar = {
+        launcher.autoDetectIcon = true;
+        workspaces = {
+          showApplicationIcons = true;
+          showWsIcons = true;
+          workspaces = 2;
+        };
+        clock = {
+          format = "%Y-%m-%d | %H:%M";
+        };
+      };
+
+      menus = {
+        clock = {
+          time = {
+            military = true;
+            hideSeconds = true;
+          };
+          weather = {
+            location = "Orebro";
+            unit = "metric";
+          };
+        };
+
+        dashboard = {
+          directories.enabled = false;
+          shortcuts.enabled = false;
+          stats.enable_gpu = true;
+        };
+      };
+
+      notifications = {
+        position = "top center";
+      };
+
+      theme.bar.transparent = true;
+
+      theme.font = {
+        name = "CaskaydiaCove NF";
+        size = "12px";
+      };
+    };
+  };
+}

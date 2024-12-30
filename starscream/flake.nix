@@ -88,7 +88,7 @@
 
           config = {
             allowUnfree = true;
-            config.permittedInsecurePackages = [
+            permittedInsecurePackages = [
               "dotnet-sdk-6.0.428"
             ];
           };

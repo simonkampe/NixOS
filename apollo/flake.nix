@@ -9,21 +9,32 @@
     stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     master.url = "github:NixOS/nixpkgs/master";
-    #extras.url = "github:simonkampe/nixpkgs/extras";
-
-    # Private common modules
-    common.url = "../common";
 
     # Utilities
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tosibox-key = {
-      url = "path:/home/simon/Workspace/Personal/NixOS/apollo/external/tosibox-key";
+      url = "git+ssh://simon@zeus/data/git/tosibox-key.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     apax-cli = {
-      url = "path:/home/simon/Workspace/Clients/ESAB/Adaptio/PLC/apax";
+      url = "git+ssh://simon@zeus/data/git/apax.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -31,8 +42,9 @@
   outputs = inputs@{
     self,
     nixpkgs,
-    common,
     nixos-hardware,
+    home-manager,
+    agenix,
     tosibox-key,
     apax-cli,
     ...
@@ -53,16 +65,14 @@
         master = import inputs.master {
           system = final.system;
           config.allowUnfree = true;
-          config.permittedInsecurePackages = [
-            "olm-3.2.16" # Nheko
-          ];
         };
 
-        #extras = import inputs.extras {
-        #  system = final.system;
-        #  config.allowUnfree = true;
-        #};
+        tosibox = inputs.tosibox-key.packages.${final.system}.default;
+        apax = inputs.apax-cli.packages.${final.system}.apax;
+        agenix = agenix.packages.${final.system}.default;
       })
+
+      inputs.hyprpanel.overlay
     ];
   in
   {
@@ -73,111 +83,33 @@
         pkgs = (import nixpkgs) {
           system = "x86_64-linux";
 
+
           config = {
             allowUnfree = true;
+            permittedInsecurePackages = [
+              "dotnet-sdk-6.0.428"
+            ];
           };
 
           inherit overlays;
         } // { outPath = nixpkgs.outPath; };
 
+        specialArgs = { inherit inputs; };
+
         modules = [
-          # Host
-          ./host.nix
-          common.nixosModules.configuration.common
+          ./configuration.nix
 
-          # DE/WM
-          common.nixosModules.desktop.kde
-
-          # Configuration
-          common.nixosModules.configuration.cross-aarch64-linux
-
-          # Applications
-          common.nixosModules.applications.dev.vmware-workstation
-          common.nixosModules.applications.virtualisation.qemu
-          common.nixosModules.applications.gaming.steam
-          
-          # Services
-          common.nixosModules.services.avahi
-          common.nixosModules.services.clamav
-          common.nixosModules.services.gpg-agent
-          common.nixosModules.services.printing
-
-          # Hardware
-          nixos-hardware.nixosModules.lenovo-thinkpad-p1-gen3
-
-          ({ pkgs, lib, ... }:
+          home-manager.nixosModules.home-manager
           {
-            programs.adb.enable = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.simon = import ./home/simon.nix;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+          }
 
-            virtualisation.docker.enable = true;
+          agenix.nixosModules.default
 
-            security.polkit.enable = true;
-
-            services = {
-              tailscale.enable = true;
-              flatpak.enable = true;
-              fwupd.enable = true;
-
-              ollama = {
-                enable = true;
-                acceleration = "cuda";
-              };
-
-              open-webui.enable = true;
-
-              udev.packages = [ tosibox-key.packages.x86_64-linux.tosiboxkey ];
-            };
-
-            security.sudo.extraConfig = ''
-              %wheel ALL=(root) NOPASSWD: ${tosibox-key.packages.x86_64-linux.tosiboxkey}/bin/openvpn
-            '';
-
-            environment.systemPackages = with pkgs; [
-              # Browsers
-              unstable.brave
-              unstable.chromium
-
-              # Office
-              unstable.onlyoffice-bin_latest
-
-              # Graphics
-              inkscape
-              aseprite
-
-              # Media
-              unstable.spotify
-              vlc
-
-              # Social
-              master.discord
-              master.nheko
-
-              # Dev tools
-              unstable.jetbrains.clion
-              unstable.jetbrains.pycharm-professional
-              unstable.jetbrains.webstorm
-              unstable.jetbrains.rider
-              unstable.jetbrains.rust-rover
-              unstable.jetbrains.idea-ultimate
-              unstable.jetbrains.datagrip
-              (unstable.vscodium.fhsWithPackages (ps: with ps; [
-                nodejs
-                stdenv.cc.cc.lib
-                dotnetCorePackages.sdk_6_0
-              ]))
-              unstable.bluej
-
-              # Note taking
-              unstable.obsidian
-
-              # Tooling
-              unstable.wireshark
-              unstable.sniffnet
-              unstable.teamviewer
-              tosibox-key.packages.x86_64-linux.tosiboxkey
-              apax-cli.packages.x86_64-linux.apax
-            ];
-          })
+          inputs.tosibox-key.nixosModules.tosibox-key
         ];
       };
     };

@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, prepend_shell, ... }:
 
 {
   home.packages = with pkgs; [
     any-nix-shell
+    xcp
   ];
 
   programs.nushell = {
@@ -12,6 +13,8 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
+      ${prepend_shell}
+
       set -gx EDITOR hx
       set -gx VISUAL hx
       set -gx NIX_SHELL_PRESERVE_PROMPT 1
