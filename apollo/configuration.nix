@@ -5,7 +5,6 @@
     ./hardware-configuration.nix
 
     #./modules/ai.nix
-    ./modules/hyprland.nix
     ./modules/locale.nix
     ./modules/nix.nix
     ./modules/yubikey.nix
@@ -47,6 +46,14 @@
       enable = true;
       package = pkgs.tosibox;
     };
+  } // { # Hyprland
+    uwsm.enable = true;
+
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      withUWSM = true;
+    };
   };
 
   virtualisation = {
@@ -73,8 +80,8 @@
     #flatpak.enable = true;
     fwupd.enable = true;
     pcscd.enable = true;
-    timesyncd.enable = lib.mkDefault true;
     thermald.enable = true;
+    upower.enable = true;
 
     avahi = {
       enable = true;
@@ -129,10 +136,13 @@
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
+    nerd-fonts.hack
     noto-fonts
   ];
 
   environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+
     pathsToLink = [ "/share/nix-direnv" ];
 
     systemPackages = with pkgs; [
@@ -202,6 +212,8 @@
       unrar
       unzip
       p7zip
+      fontconfig
+      pavucontrol
     ];
   };
 

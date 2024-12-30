@@ -5,10 +5,9 @@
     ./hardware-configuration.nix
 
     #./modules/ai.nix
-    ./modules/hyprland.nix
     ./modules/locale.nix
     ./modules/nix.nix
-    #./modules/yubikey.nix
+    ./modules/yubikey.nix
   ];
 
   users = {
@@ -17,7 +16,7 @@
     users.simon = {
       description = "Simon Kämpe";
       isNormalUser = true;
-      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "input" "audio" "libvirtd" ];
+      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "libvirtd" ];
       initialPassword = "changethis";
       shell = pkgs.fish;
     };
@@ -29,17 +28,37 @@
   };
 
   programs = {
-    tosibox-key.enable = true;
     virt-manager.enable = true;
     fish.enable = true;
+    seahorse.enable = true;
+    
+    evolution = {
+      #enable = true;
+      #plugins = [ pkgs.evolution-ews ];
+    };
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+    };
+
+    tosibox-key = {
+      enable = true;
+      package = pkgs.tosibox;
+    };
+  } // { # Hyprland
+    uwsm.enable = true;
+
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      withUWSM = true;
     };
   };
 
   virtualisation = {
     docker.enable = true;
+    spiceUSBRedirection.enable = true;
 
     vmware.host = {
       enable = true;
@@ -54,12 +73,15 @@
 
   security.polkit.enable = true;
 
+  powerManagement.enable = true;
+
   services = {
     tailscale.enable = true;
     #flatpak.enable = true;
     fwupd.enable = true;
     pcscd.enable = true;
-    timesyncd.enable = lib.mkDefault true;
+    thermald.enable = true;
+    upower.enable = true;
 
     avahi = {
       enable = true;
@@ -81,37 +103,46 @@
       updater.enable = true;
     };
 
+    gnome = {
+      evolution-data-server.enable = true;
+      gnome-keyring.enable = true;
+    };
+
+    gvfs = {
+      enable = true;
+    };
+
+    logind = {
+      lidSwitch = "suspend";
+      lidSwitchExternalPower = "suspend";
+      lidSwitchDocked = "ignore";
+    };
+
     printing = {
       enable = true;
       drivers = with pkgs; [
-        # Brother
-        brlaser
-
-        # Canon
-        canon-cups-ufr2
-        cnijfilter2
-        cnijfilter_4_00
-        cnijfilter_2_80
-
-        # HP
-        hplip
-
         # Epson
         epson-escpr2
         epsonscan2
       ];
     };
+
+    tlp = {
+      enable = true;
+      settings = {
+      };
+    };
   };
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
-    ibm-plex
-    comfortaa
+    nerd-fonts.hack
     noto-fonts
-    material-design-icons
   ];
 
   environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+
     pathsToLink = [ "/share/nix-direnv" ];
 
     systemPackages = with pkgs; [
@@ -124,7 +155,7 @@
 
       # Graphics
       inkscape
-      aseprite
+      #aseprite
 
       # Media
       spotify
@@ -134,25 +165,18 @@
       discord
 
       # Note taking
-      obsidian
+      #obsidian
 
       # Anti-virus
       clamav
 
       # IDEs
       jetbrains.clion
-      jetbrains.pycharm-professional
-      jetbrains.webstorm
-      jetbrains.rider
       jetbrains.rust-rover
-      jetbrains.idea-ultimate
-      jetbrains.datagrip
-      bluej
 
       (vscodium.fhsWithPackages (ps: with ps; [
         nodejs
         stdenv.cc.cc.lib
-        dotnetCorePackages.sdk_6_0
       ]))
 
       # Dev tools
@@ -169,6 +193,7 @@
 
       ## Network
       curl
+      samba
       nmap
       wget
       tunctl
@@ -187,6 +212,8 @@
       unrar
       unzip
       p7zip
+      fontconfig
+      pavucontrol
     ];
   };
 
@@ -196,5 +223,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 }

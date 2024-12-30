@@ -6,7 +6,7 @@
     nixpkgs.follows = "unstable";
 
     # Extra channels
-    stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     master.url = "github:NixOS/nixpkgs/master";
 
@@ -42,8 +42,11 @@
   outputs = inputs@{
     self,
     nixpkgs,
+    nixos-hardware,
     home-manager,
     agenix,
+    tosibox-key,
+    apax-cli,
     ...
   }:
   let
@@ -52,22 +55,16 @@
         stable = import inputs.stable {
           system = final.system;
           config.allowUnfree = true;
-          config.permittedInsecurePackages = [
-          ];
         };
 
         unstable = import inputs.unstable {
           system = final.system;
           config.allowUnfree = true;
-          config.permittedInsecurePackages = [
-          ];
         };
 
         master = import inputs.master {
           system = final.system;
           config.allowUnfree = true;
-          config.permittedInsecurePackages = [
-          ];
         };
 
         tosibox = inputs.tosibox-key.packages.${final.system}.default;
@@ -78,7 +75,7 @@
       inputs.hyprpanel.overlay
     ];
   in
-  rec {
+  {
     nixosConfigurations = {
       starscream = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -88,9 +85,6 @@
 
           config = {
             allowUnfree = true;
-            permittedInsecurePackages = [
-              "dotnet-sdk-6.0.428"
-            ];
           };
 
           inherit overlays;
@@ -106,20 +100,12 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.simon = import ./home/simon.nix;
-            home-manager.extraSpecialArgs = { inherit agenix; };
+            home-manager.extraSpecialArgs = { inherit inputs; };
           }
 
           agenix.nixosModules.default
 
           inputs.tosibox-key.nixosModules.tosibox-key
-
-          ({ pkgs, lib, ... }:
-          {
-            programs.tosibox-key = {
-              enable = true;
-              package = pkgs.tosibox;
-            };
-          })
         ];
       };
     };
