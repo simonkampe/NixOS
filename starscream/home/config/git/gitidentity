@@ -1,8 +1,17 @@
-[includeIf "gitdir:~/workspace/work/ESAB/"]
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
+
+[user]
+  signingkey = C230131BFEF54E26
+
+[includeIf "gitdir:~/Workspace/External/ESAB/"]
   path = gitidentity-esab
-[includeIf "gitdir:~/workspace/work/Linetic/"]
+[includeIf "gitdir:~/Workspace/External/Linetic/"]
   path = gitidentity-linetic
-[includeIf "gitdir:~/workspace/simra/"]
+[includeIf "gitdir:~/Workspace/Simra/"]
   path = gitidentity-simra
 [includeIf "gitdir:**"]
   path = gitidentity-personal
