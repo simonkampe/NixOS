@@ -2,15 +2,20 @@
 
 {
   services = {
+    pcscd.enable = true;
+
     udev.packages = [
       pkgs.yubikey-personalization
     ];
   };
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
+  #programs.gnupg.agent = {
+  #  enable = true;
+  #  enableSSHSupport = true;
+
+  #  settings = {
+  #  };
+  #};
 
   security.pam.yubico = {
     enable = true;
@@ -23,7 +28,7 @@
   environment.systemPackages = with pkgs; [
     yubioath-flutter
     yubikey-manager
-    yubico-piv-tool
+    #yubico-piv-tool
     yubico-pam
     yubikey-personalization-gui
     age-plugin-yubikey
@@ -40,20 +45,20 @@
     #RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   #'';
 
-  systemd.user.sockets."piv-agent" = {
-    enable = true;
-    description = "piv-agent socket activation";
-    listenStreams = [
-      "%t/piv-agent/ssh.socket"
-      "%t/gnupg/S.gpg-agent"
-    ];
-  };
+  #systemd.user.sockets."piv-agent" = {
+  #  enable = true;
+  #  description = "piv-agent socket activation";
+  #  listenStreams = [
+  #    "%t/piv-agent/ssh.socket"
+  #    "%t/gnupg/S.gpg-agent"
+  #  ];
+  #};
 
-  systemd.user.services."piv-agent" = {
-    enable = true;
-    description = "piv-agent service";
-    serviceConfig = {
-      ExecStart = "piv-agent serve --agent-types=ssh=1;gpg=1";
-    };
-  };
+  #systemd.user.services."piv-agent" = {
+  #  enable = true;
+  #  description = "piv-agent service";
+  #  serviceConfig = {
+  #    ExecStart = "piv-agent serve --agent-types=ssh=1;gpg=1";
+  #  };
+  #};
 }

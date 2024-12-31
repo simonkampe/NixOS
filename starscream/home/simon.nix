@@ -7,8 +7,12 @@
   imports = [
     inputs.agenix.homeManagerModules.age
 
+    ../../home/git.nix
+    ../../home/gpg.nix
     ../../home/hyprland.nix
     ../../home/hyprpanel.nix
+    ../../home/helix.nix
+
     (import ../../home/shell.nix {
       inherit config pkgs;
       prepend_shell = ''
@@ -16,8 +20,6 @@
         set -gx GITLAB_TOKEN $(cat ${builtins.replaceStrings [ "\${XDG_RUNTIME_DIR}/" ] [ "/run/user/1000/" ] config.age.secrets.gitlab-token.path} | sed -E 's|.*:(.*)|\1|')
       '';
     })
-    ../../home/git.nix
-    ../../home/helix.nix
   ];
 
   home.packages = with pkgs; [
