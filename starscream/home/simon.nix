@@ -39,6 +39,10 @@
     github-token.file = /home/simon/.secrets/github-token.age;
   };
 
+  nix.extraOptions = ''
+    !include ${builtins.replaceStrings [ "\${XDG_RUNTIME_DIR}/" ] [ "/run/user/1000/" ] config.age.secrets.gitlab-token.path}
+  '';
+
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
