@@ -49,9 +49,9 @@
     layout = {
       "bar.layouts" = {
         "*" = {
-          left = [ "dashboard" "power" "workspaces" "windowtitle" ];
-          middle = [ "media" "notifications" ];
-          right = [ "volume" "network" "bluetooth" "battery" "hypridle" "hyprsunset" "systray" "clock" ];
+          left = [ "power" "hypridle" "hyprsunset" "workspaces" ];
+          middle = [ "media" "clock" "notifications" ];
+          right = [ "volume" "network" "bluetooth" "battery" "systray" ];
         };
       };
     };
@@ -78,7 +78,9 @@
             military = true;
             hideSeconds = true;
           };
+
           weather = {
+            enabled = false;
             location = "Orebro";
             unit = "metric";
           };
@@ -89,6 +91,11 @@
           shortcuts.enabled = false;
           stats.enable_gpu = true;
         };
+
+        power = {
+          confirmation = false;
+          lowBatteryNotification = true;
+        };
       };
 
       notifications = {
@@ -98,8 +105,8 @@
       theme.bar.transparent = true;
 
       theme.font = {
-        name = "CaskaydiaCove NF";
-        size = "12px";
+        name = "Noto Sans";
+        size = "13px";
       };
     };
   };
