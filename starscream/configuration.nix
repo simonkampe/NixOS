@@ -8,6 +8,7 @@
     ./modules/locale.nix
     ./modules/nix.nix
     ./modules/yubikey.nix
+    ./modules/zsa.nix
   ];
 
   users = {
@@ -16,7 +17,7 @@
     users.simon = {
       description = "Simon Kämpe";
       isNormalUser = true;
-      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "libvirtd" ];
+      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "libvirtd" "plugdev" ];
       initialPassword = "changethis";
       shell = pkgs.fish;
     };
