@@ -50,19 +50,24 @@
   };
 
   programs.spicetify =
-   let
-     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-   in
-   {
-     enable = true;
-     enabledExtensions = with spicePkgs.extensions; [
-       adblock
-       #hidePodcasts
-       #shuffle # shuffle+ (special characters are sanitized out of extension names)
-     ];
-     theme = spicePkgs.themes.sleek;
-     colorScheme = "nord";
-   };
+  let
+    spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  in {
+    enable = true;
+
+    enabledExtensions = with spicePkgs.extensions; [
+      adblock
+      #hidePodcasts
+      #shuffle # shuffle+ (special characters are sanitized out of extension names)
+    ];
+
+    theme = spicePkgs.themes.sleek;
+    colorScheme = "nord";
+  };
+
+  services.gpg-agent = {
+    pinentryPackage = pkgs.pinentry-gnome3;
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

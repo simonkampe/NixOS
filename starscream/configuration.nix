@@ -34,8 +34,8 @@
     seahorse.enable = true;
     
     evolution = {
-      #enable = true;
-      #plugins = [ pkgs.evolution-ews ];
+      enable = true;
+      plugins = [ pkgs.evolution-ews ];
     };
 
     gnupg.agent = {
