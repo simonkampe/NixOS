@@ -41,7 +41,7 @@
 
     # Import a specific theme from './themes/*.json'.
     # Default: ""
-    theme = "one_dark_vivid";
+    theme = "one_dark_split";
 
     # Configure bar layouts for monitors.
     # See 'https://hyprpanel.com/configuration/panel.html'.
@@ -65,7 +65,7 @@
         workspaces = {
           showApplicationIcons = true;
           showWsIcons = true;
-          workspaces = 2;
+          workspaces = 1;
         };
         clock = {
           format = "%Y-%m-%d | %H:%M";
@@ -102,11 +102,13 @@
         position = "top center";
       };
 
-      theme.bar.transparent = true;
+      theme = {
+        bar.transparent = true;
 
-      theme.font = {
-        name = "Noto Sans";
-        size = "13px";
+        font = {
+          name = "Noto Sans";
+          size = "13px";
+        };
       };
     };
   };
