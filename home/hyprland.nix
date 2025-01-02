@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     blueman
     foot
+    ghostty
     networkmanagerapplet
     swww
     waypaper
@@ -16,6 +17,10 @@
     enable = true;
     configFile."foot" = {
       source = ./config/foot;
+      recursive = true;
+    };
+    configFile."ghostty" = {
+      source = ./config/ghostty;
       recursive = true;
     };
     configFile."hypr" = {

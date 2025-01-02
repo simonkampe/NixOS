@@ -1,0 +1,8 @@
+background-opacity = 0.98
+
+font-family = FiraCode Nerd Font Ret
+font-size = 10
+
+theme = nord
+
+window-decoration = false
