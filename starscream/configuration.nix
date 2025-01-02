@@ -135,6 +135,11 @@
     };
   };
 
+  # Set systemd affinity to the E-cores
+  systemd.extraConfig = ''
+    CPUAffinity=12 13 14 15 16 17 18 19 20 21
+  '';
+
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
     nerd-fonts.hack
