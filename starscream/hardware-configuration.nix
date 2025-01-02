@@ -78,7 +78,7 @@
 
       luks.devices = {
         "cryptroot".device = "/dev/disk/by-label/luksroot";
-        "cryptdata".device = "/dev/nvme1n1";
+        "cryptdata".device = "/dev/disk/by-uuid/05d52f0b-81c6-4cd2-93a7-4ef77ab656e6";
       };
 
       systemd.enable = true;
