@@ -53,11 +53,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735535757,
-        "narHash": "sha256-btYuFJY6NYUXmsUk7hAbhsH1e6GQd2cxO7B3Dho4jr8=",
+        "lastModified": 1735881903,
+        "narHash": "sha256-tpAifnhSoqjNv240mpjiM+Zw/DDjrw/bnsauuLiHoc0=",
         "ref": "main",
-        "rev": "d49ce65d0c6c6023ca5f04b2e6f002f8153a5247",
-        "revCount": 2,
+        "rev": "0b33e726c4e28293fefb44ffad214b3e49cb97c4",
+        "revCount": 3,
         "type": "git",
         "url": "ssh://simon@zeus/data/git/apax.git"
       },
@@ -132,11 +132,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1726560853,
-        "narHash": "sha256-X6rJYSESBVr3hBoH0WbKE5KvhPU5bloyZ2L4K60/fPQ=",
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "c1dfcf08411b08f6b8615f7d8971a2bfa81d5e8a",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
         "type": "github"
       },
       "original": {
