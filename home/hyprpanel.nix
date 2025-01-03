@@ -111,5 +111,18 @@
         };
       };
     };
+
+    override = {
+      theme.bar.buttons.workspaces.active = "#61AFEF";
+      theme.bar.buttons.workspaces.hover = "#61AFEF";
+      theme.bar.buttons.workspaces.numbered_active_underline_color = "#61AFEF";
+      theme.bar.buttons.workspaces.numbered_active_highlighted_text_color = "#61AFEF";
+
+      app.icon.mappings = {
+        "[dD]iscord" = "󰙯";
+        "title:YouTube" = "";
+        "ghostty" = "";
+      };
+    };
   };
 }
