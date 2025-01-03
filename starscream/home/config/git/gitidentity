@@ -1,9 +1,3 @@
-[commit]
-  gpgsign = true
-
-[tag]
-  gpgsign = true
-
 [user]
   signingkey = C230131BFEF54E26
 
