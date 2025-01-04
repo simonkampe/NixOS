@@ -4,7 +4,7 @@
   imports = [
     ./hardware-configuration.nix
 
-    #./modules/ai.nix
+    ./modules/ai.nix
     ./modules/locale.nix
     ./modules/nix.nix
     ./modules/yubikey.nix
@@ -81,7 +81,6 @@
     #flatpak.enable = true;
     fwupd.enable = true;
     pcscd.enable = true;
-    thermald.enable = true;
     upower.enable = true;
 
     avahi = {
@@ -126,6 +125,11 @@
         epson-escpr2
         epsonscan2
       ];
+    };
+
+    thermald = {
+      enable = true;
+      ignoreCpuidCheck = true;
     };
 
     tlp = {
@@ -210,6 +214,7 @@
       pciutils
       usbutils
       inxi
+      nvtop
 
       ## Utilities
       tpm2-tss
