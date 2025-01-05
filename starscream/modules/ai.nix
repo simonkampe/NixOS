@@ -1,4 +1,4 @@
-{ config, ... } :
+{ config, pkgs, ... } :
 
 {
   services = {
@@ -11,4 +11,12 @@
     # Ollama GUI
     open-webui.enable = true;
   };
+
+  boot.extraModulePackages = with pkgs; [
+    intel-npu-driver
+  ];
+
+  hardware.firmware = with pkgs; [
+    intel-npu-driver.firmware
+  ];
 }

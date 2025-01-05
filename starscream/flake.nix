@@ -75,6 +75,8 @@
         tosibox = inputs.tosibox-key.packages.${final.system}.default;
         apax = inputs.apax-cli.packages.${final.system}.apax;
         agenix = agenix.packages.${final.system}.default;
+
+        intel-npu-driver = import ./pkgs/intel-npu-driver.nix { pkgs = final; };
       })
 
       inputs.hyprpanel.overlay
