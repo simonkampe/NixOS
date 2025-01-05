@@ -218,6 +218,7 @@
 
       ## Utilities
       tpm2-tss
+      libsecret
       killall
       screen
       silver-searcher
