@@ -15,10 +15,6 @@
 
   xdg = {
     enable = true;
-    configFile."foot" = {
-      source = ./config/foot;
-      recursive = true;
-    };
     configFile."ghostty" = {
       source = ./config/ghostty;
       recursive = true;

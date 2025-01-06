@@ -196,6 +196,7 @@
       sqlite
 
       # Tooling
+      waveterm
       wireshark
       teamviewer
 
@@ -214,7 +215,7 @@
       pciutils
       usbutils
       inxi
-      nvtop
+      nvtopPackages.full
 
       ## Utilities
       tpm2-tss

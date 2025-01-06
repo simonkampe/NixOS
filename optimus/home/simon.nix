@@ -1,27 +1,48 @@
-{ agenix, ... } :
+{ inputs, config, pkgs, ... } :
 
 {
   home.username = "simon";
   home.homeDirectory = "/home/simon";
 
   imports = [
-    agenix.homeManagerModules.age
+    inputs.spicetify-nix.homeManagerModules.default
 
-    ./hyprland.nix
-
-    ../../home/shell.nix
     ../../home/git.nix
+    ../../home/hyprland.nix
+    ../../home/hyprpanel.nix
     ../../home/helix.nix
-  ];
 
-  age.secrets = {
-    #gitlab-token.file = /home/simon/.secrets/gitlab-token.age;
-    #github-token.file = /home/simon/.secrets/github-token.age;
-  };
+    (import ../../home/shell.nix { inherit config pkgs; prepend_shell = ""; })
+  ];
 
   # Link stuff currently not managed by home-manager
   xdg = {
     enable = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  programs.spicetify =
+  let
+    spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  in {
+    enable = true;
+
+    enabledExtensions = with spicePkgs.extensions; [
+      adblock
+      #hidePodcasts
+      #shuffle # shuffle+ (special characters are sanitized out of extension names)
+    ];
+
+    theme = spicePkgs.themes.sleek;
+    colorScheme = "nord";
+  };
+
+  services.gpg-agent = {
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
   # This value determines the Home Manager release that your

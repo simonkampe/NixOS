@@ -4,11 +4,10 @@
   imports = [
     ./hardware-configuration.nix
 
-    #./modules/ai.nix
-    ./modules/hyprland.nix
     ./modules/locale.nix
     ./modules/nix.nix
-    #./modules/yubikey.nix
+    ./modules/yubikey.nix
+    ./modules/zsa.nix
   ];
 
   users = {
@@ -17,7 +16,7 @@
     users.simon = {
       description = "Simon Kämpe";
       isNormalUser = true;
-      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "input" "audio" "libvirtd" ];
+      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "libvirtd" "plugdev" ];
       initialPassword = "changethis";
       shell = pkgs.fish;
     };
@@ -30,6 +29,7 @@
 
   programs = {
     fish.enable = true;
+    seahorse.enable = true;
 
     gnupg.agent = {
       enable = true;
@@ -43,7 +43,15 @@
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       gamescopeSession.enable = true;
     };
-  };
+  } // { # Hyprland
+     uwsm.enable = true;
+
+     hyprland = {
+       enable = true;
+       xwayland.enable = true;
+       withUWSM = true;
+     };
+   };
 
   security.polkit.enable = true;
 
@@ -51,7 +59,7 @@
     tailscale.enable = true;
     #flatpak.enable = true;
     fwupd.enable = true;
-    timesyncd.enable = lib.mkDefault true;
+    pcscd.enable = true;
 
     avahi = {
       enable = true;
@@ -73,6 +81,15 @@
       updater.enable = true;
     };
 
+    gnome = {
+      evolution-data-server.enable = true;
+      gnome-keyring.enable = true;
+    };
+
+    gvfs = {
+      enable = true;
+    };
+
     printing = {
       enable = true;
       drivers = with pkgs; [
@@ -85,13 +102,13 @@
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
-    ibm-plex
-    comfortaa
+    nerd-fonts.hack
     noto-fonts
-    material-design-icons
   ];
 
   environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+
     pathsToLink = [ "/share/nix-direnv" ];
 
     systemPackages = with pkgs; [
@@ -114,11 +131,6 @@
       # Anti-virus
       clamav
 
-      # IDEs
-      jetbrains.clion
-      jetbrains.rust-rover
-      jetbrains.idea-ultimate
-
       # Dev tools
       git
 
@@ -126,6 +138,8 @@
 
       ## Network
       curl
+      samba
+      nmap
       wget
 
       ## Hardware
@@ -133,14 +147,19 @@
       pciutils
       usbutils
       inxi
+      nvtopPackages.full
 
       ## Utilities
+      tpm2-tss
+      libsecret
       killall
       screen
       silver-searcher
       unrar
       unzip
       p7zip
+      fontconfig
+      pavucontrol
     ];
   };
 

@@ -23,8 +23,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix = {
-      url = "github:ryantm/agenix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -34,7 +34,6 @@
     nixpkgs,
     nixos-hardware,
     home-manager,
-    agenix,
     ...
   }:
   let
@@ -42,20 +41,18 @@
       (final: prev: {
         stable = import inputs.stable {
           system = final.system;
-          allowUnfree = true;
+          config.allowUnfree = true;
         };
 
         unstable = import inputs.unstable {
           system = final.system;
-          allowUnfree = true;
+          config.allowUnfree = true;
         };
 
         master = import inputs.master {
           system = final.system;
-          allowUnfree = true;
+          config.allowUnfree = true;
         };
-
-        agenix = agenix.packages.${final.system}.default;
       })
 
       inputs.hyprpanel.overlay
@@ -68,12 +65,11 @@
 
         pkgs = (import nixpkgs) {
           system = "x86_64-linux";
+
           config = {
             allowUnfree = true;
-            config.permittedInsecurePackages = [
-              "dotnet-sdk-7.0.410"
-            ];
           };
+
           inherit overlays;
         } // { outPath = nixpkgs.outPath; };
 
@@ -87,10 +83,8 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.simon = import ./home/simon.nix;
-            home-manager.extraSpecialArgs = { inherit agenix; };
+            home-manager.extraSpecialArgs = { inherit inputs; };
           }
-
-          agenix.nixosModules.default
         ];
       };
     };

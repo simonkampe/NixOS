@@ -1,4 +1,4 @@
-{ config, pkgs, prepend_shell, ... }:
+{ config, pkgs, prepend_shell ? "", ... }:
 
 {
   home.packages = with pkgs; [
