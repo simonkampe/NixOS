@@ -62,13 +62,23 @@
     settings = {
       bar = {
         launcher.autoDetectIcon = true;
+
         workspaces = {
-          showApplicationIcons = true;
+          showApplicationIcons = false;
           showWsIcons = true;
+          applicationIconOncePerWorkspace = false;
           workspaces = 1;
+          monitorSpecific = false;
+          spacing = 1;
+          ignored = "-98";
         };
+        
         clock = {
           format = "%Y-%m-%d | %H:%M";
+        };
+
+        customModules.power = {
+          showLabel = false;
         };
       };
 
