@@ -68,7 +68,7 @@
           showWsIcons = true;
           applicationIconOncePerWorkspace = false;
           workspaces = 1;
-          monitorSpecific = false;
+          monitorSpecific = true;
           spacing = 1;
           ignored = "-98";
         };

@@ -1,6 +1,15 @@
 {
   description = "";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   inputs = {
     # System
     nixpkgs.follows = "unstable";
@@ -19,7 +28,7 @@
     };
 
     hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
+      url = "github:simonkampe/HyprPanel?ref=ws_mon_fix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
