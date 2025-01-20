@@ -9,8 +9,10 @@
     swww
     waypaper
     wofi
-    xfce.thunar
-    xfce.thunar-volman
+    nautilus
+    sushi
+    nautilus-open-any-terminal
+    loupe
   ];
 
   xdg = {
