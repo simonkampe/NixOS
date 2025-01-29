@@ -191,12 +191,12 @@
 
       # Dev tools
       git
+      jujutsu
       qemu
       apax
       sqlite
 
       # Tooling
-      waveterm
       wireshark
       teamviewer
 
@@ -226,6 +226,7 @@
       unrar
       unzip
       p7zip
+      jq
       fontconfig
       pavucontrol
     ];

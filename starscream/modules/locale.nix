@@ -3,7 +3,7 @@
 {
   time = {
     timeZone = "Europe/Stockholm";
-    hardwareClockInLocalTime = true;
+    hardwareClockInLocalTime = false;
   };
 
   i18n = {
