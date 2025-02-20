@@ -123,6 +123,7 @@
       z = "zellij";
       za = "zellij attach";
       zs = "zellij --session";
+      sshn = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no";
     };
   };
 
@@ -167,7 +168,7 @@
 
   programs.zellij = {
     enable = true;
-    #enableFishIntegration = true;
+    enableFishIntegration = false;
     settings = {
       theme = "nord";
       mouse_mode = false;

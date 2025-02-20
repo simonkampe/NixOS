@@ -38,12 +38,16 @@
     };
 
     tosibox-key = {
-      url = "git+ssh://simon@zeus/data/git/tosibox-key.git?ref=main";
+      #url = "git+ssh://simon@zeus/data/git/tosibox-key.git?ref=main";
+      #url = "git+ssh://git@gitlab.com/esab/abw/tosibox-key.git?ref=flake";
+      url = "path:///home/simon/Workspace/Personal/tosibox-key/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     apax-cli = {
-      url = "git+ssh://simon@zeus/data/git/apax.git?ref=main";
+      #url = "git+ssh://simon@zeus/data/git/apax.git?ref=main";
+      #url = "git+ssh://git@gitlab.com/esab/abw/plc/apax.git?ref=main";
+      url = "path:///home/simon/Workspace/Personal/apax/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

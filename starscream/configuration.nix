@@ -162,6 +162,8 @@
 
       # Office
       onlyoffice-bin_latest
+      synology-drive-client
+      simple-scan
 
       # Graphics
       inkscape
@@ -229,6 +231,8 @@
       jq
       fontconfig
       pavucontrol
+      parted
+      e2fsprogs
     ];
   };
 

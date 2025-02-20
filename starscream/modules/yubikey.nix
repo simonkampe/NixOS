@@ -23,5 +23,11 @@
     yubico-pam
     yubikey-personalization-gui
     age-plugin-yubikey
+    yubikey-touch-detector
   ];
+
+  programs.yubikey-touch-detector = {
+    enable = true;
+    libnotify = true;
+  };
 }

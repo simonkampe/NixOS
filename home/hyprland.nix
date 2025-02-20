@@ -13,6 +13,8 @@
     sushi
     nautilus-open-any-terminal
     loupe
+    hyprpolkitagent
+    xorg.xhost
   ];
 
   xdg = {
@@ -60,9 +62,9 @@
 
   qt = {
     enable = true;
-    style = {
-      package = pkgs.qogir-kde;
-      name = "Qogir-dark";
-    };
+    #style = {
+    #  package = pkgs.qogir-kde;
+    #  name = "Qogir-dark";
+    #};
   };
 }
