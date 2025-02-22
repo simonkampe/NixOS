@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
 
+    ./modules/kde.nix
     ./modules/locale.nix
     ./modules/nix.nix
     ./modules/yubikey.nix
@@ -43,15 +44,7 @@
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       gamescopeSession.enable = true;
     };
-  } // { # Hyprland
-     uwsm.enable = true;
-
-     hyprland = {
-       enable = true;
-       xwayland.enable = true;
-       withUWSM = true;
-     };
-   };
+  };
 
   security.polkit.enable = true;
 

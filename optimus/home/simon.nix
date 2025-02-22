@@ -8,8 +8,6 @@
     inputs.spicetify-nix.homeManagerModules.default
 
     ../../home/git.nix
-    ../../home/hyprland.nix
-    ../../home/hyprpanel.nix
     ../../home/helix.nix
 
     (import ../../home/shell.nix { inherit config pkgs; prepend_shell = ""; })
@@ -39,10 +37,6 @@
 
     theme = spicePkgs.themes.sleek;
     colorScheme = "nord";
-  };
-
-  services.gpg-agent = {
-    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
   # This value determines the Home Manager release that your

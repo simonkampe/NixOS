@@ -10,8 +10,6 @@
 
     ../../home/git.nix
     ../../home/gpg.nix
-    ../../home/hyprland.nix
-    ../../home/hyprpanel.nix
     ../../home/helix.nix
 
     (import ../../home/shell.nix {
@@ -63,10 +61,6 @@
 
     theme = spicePkgs.themes.sleek;
     colorScheme = "nord";
-  };
-
-  services.gpg-agent = {
-    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
   # This value determines the Home Manager release that your

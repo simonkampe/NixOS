@@ -32,12 +32,6 @@
       set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 
       any-nix-shell fish --info-right | source
-
-      if type -q uwsm;
-        if uwsm check may-start && uwsm select;
-          exec systemd-cat -t uwsm_start uwsm start default;
-        end
-      end
     '';
     functions = {
       ducks = {

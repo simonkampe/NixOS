@@ -21,7 +21,6 @@
 
   environment.systemPackages = with pkgs; [
     wl-clipboard
-    nordic
     kdePackages.powerdevil
     kdePackages.filelight
     kdePackages.kauth

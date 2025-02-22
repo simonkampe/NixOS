@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
 
+    ./modules/kde.nix
     ./modules/ai.nix
     ./modules/locale.nix
     ./modules/nix.nix
@@ -31,13 +32,7 @@
   programs = {
     virt-manager.enable = true;
     fish.enable = true;
-    seahorse.enable = true;
     
-    evolution = {
-      enable = true;
-      plugins = [ pkgs.evolution-ews ];
-    };
-
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -46,14 +41,6 @@
     tosibox-key = {
       enable = true;
       package = pkgs.tosibox;
-    };
-  } // { # Hyprland
-    uwsm.enable = true;
-
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      withUWSM = true;
     };
   };
 
@@ -103,21 +90,6 @@
       updater.enable = true;
     };
 
-    gnome = {
-      evolution-data-server.enable = true;
-      gnome-keyring.enable = true;
-    };
-
-    gvfs = {
-      enable = true;
-    };
-
-    logind = {
-      lidSwitch = "suspend";
-      lidSwitchExternalPower = "suspend";
-      lidSwitchDocked = "ignore";
-    };
-
     printing = {
       enable = true;
       drivers = with pkgs; [
@@ -130,12 +102,6 @@
     thermald = {
       enable = true;
       ignoreCpuidCheck = true;
-    };
-
-    tlp = {
-      enable = true;
-      settings = {
-      };
     };
   };
 
