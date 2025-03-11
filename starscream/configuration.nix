@@ -63,6 +63,15 @@
 
   powerManagement.enable = true;
 
+  # Temporary work around for USB dead on resume:
+  #
+  powerManagement.resumeCommands = ''
+    mount -t debugfs none /sys/kernel/debug
+    echo 'module xhci_hcd =p' >/sys/kernel/debug/dynamic_debug/control
+    echo 'module usbcore =p' >/sys/kernel/debug/dynamic_debug/control
+    #echo 'func xhci_handle_cmd_stop_ep +p' >/proc/dynamic_debug/control
+  '';
+
   services = {
     tailscale.enable = true;
     #flatpak.enable = true;
@@ -151,6 +160,8 @@
       # IDEs
       jetbrains.clion
       jetbrains.rust-rover
+      jetbrains.pycharm-professional
+      jetbrains.webstorm
 
       (vscodium.fhsWithPackages (ps: with ps; [
         nodejs
