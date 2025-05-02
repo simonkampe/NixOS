@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
 
     ./modules/kde.nix
-    ./modules/ai.nix
+    #./modules/ai.nix
     ./modules/locale.nix
     ./modules/nix.nix
     ./modules/yubikey.nix
@@ -18,7 +18,7 @@
     users.simon = {
       description = "Simon Kämpe";
       isNormalUser = true;
-      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "libvirtd" "plugdev" ];
+      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "libvirtd" "plugdev" "kvm" "adbusers" ];
       initialPassword = "changethis";
       shell = pkgs.fish;
     };
@@ -27,10 +27,13 @@
   networking = {
     hostName = "starscream";
     networkmanager.enable = true;
+    extraHosts = ''
+      192.168.101.151 adaptio.local
+    '';
   };
 
   programs = {
-    virt-manager.enable = true;
+    adb.enable = true;
     fish.enable = true;
     
     gnupg.agent = {
@@ -42,16 +45,18 @@
       enable = true;
       package = pkgs.tosibox;
     };
+
+    virt-manager.enable = true;
   };
 
   virtualisation = {
     docker.enable = true;
     spiceUSBRedirection.enable = true;
 
-    vmware.host = {
-      enable = true;
-      package = pkgs.vmware-workstation;
-    };
+    #vmware.host = {
+    #  enable = true;
+    #  package = pkgs.vmware-workstation;
+    #};
 
     libvirtd = {
       enable = true;
@@ -73,7 +78,6 @@
   '';
 
   services = {
-    tailscale.enable = true;
     #flatpak.enable = true;
     fwupd.enable = true;
     pcscd.enable = true;
@@ -108,10 +112,23 @@
       ];
     };
 
+    sunshine = {
+      enable = true;
+      autoStart = false;
+      openFirewall = true;
+      capSysAdmin = true;
+    };
+
+    tailscale.enable = true;
+
     thermald = {
       enable = true;
       ignoreCpuidCheck = true;
     };
+
+    udev.extraRules = ''
+        KERNEL=="hidraw*", ATTRS{idVendor}=="35ca", MODE="0664", GROUP="users"
+    '';
   };
 
   # Set systemd affinity to the E-cores
@@ -163,6 +180,8 @@
       jetbrains.pycharm-professional
       jetbrains.webstorm
 
+      android-studio
+
       (vscodium.fhsWithPackages (ps: with ps; [
         nodejs
         stdenv.cc.cc.lib
@@ -172,8 +191,8 @@
       git
       jujutsu
       qemu
-      apax
       sqlite
+      azure-cli
 
       # Tooling
       wireshark

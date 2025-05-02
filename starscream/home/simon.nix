@@ -60,7 +60,7 @@
     ];
 
     theme = spicePkgs.themes.sleek;
-    colorScheme = "nord";
+    colorScheme = "Nord";
   };
 
   # This value determines the Home Manager release that your

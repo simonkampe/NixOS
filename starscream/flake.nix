@@ -44,13 +44,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    apax-cli = {
-      #url = "git+ssh://simon@zeus/data/git/apax.git?ref=main";
-      #url = "git+ssh://git@gitlab.com/esab/abw/plc/apax.git?ref=main";
-      url = "path:///home/simon/Workspace/Personal/apax/";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
