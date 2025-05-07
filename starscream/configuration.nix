@@ -36,6 +36,8 @@
     adb.enable = true;
     fish.enable = true;
     
+    gamemode.enable = true;
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -229,6 +231,20 @@
       pavucontrol
       parted
       e2fsprogs
+
+      # Entertainment
+      (prismlauncher.override { # See: https://wiki.nixos.org/wiki/Prism_Launcher
+      #  # Add binary required by some mod
+        additionalPrograms = [ ffmpeg ];
+
+      #  # Change Java runtimes available to Prism Launcher
+        jdks = [
+      #    #graalvm-ce
+      #    #zulu8
+      #    #zulu17
+          zulu
+        ];
+      })
     ];
   };
 

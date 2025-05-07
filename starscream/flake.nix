@@ -27,11 +27,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpanel = {
-      url = "github:simonkampe/HyprPanel?ref=ws_mon_fix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,7 +52,6 @@
     home-manager,
     agenix,
     tosibox-key,
-    apax-cli,
     ...
   }:
   let
@@ -79,13 +73,10 @@
         };
 
         tosibox = inputs.tosibox-key.packages.${final.system}.default;
-        apax = inputs.apax-cli.packages.${final.system}.apax;
         agenix = agenix.packages.${final.system}.default;
 
         intel-npu-driver = import ./pkgs/intel-npu-driver.nix { pkgs = final; };
       })
-
-      inputs.hyprpanel.overlay
     ];
   in
   {
