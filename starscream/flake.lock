@@ -86,6 +86,22 @@
         "type": "github"
       }
     },
+    "libtiffnixpkgs": {
+      "locked": {
+        "lastModified": 1671056470,
+        "narHash": "sha256-rrcDHjRX9R8qXvkcGvKunsw3mf7zyPJzx1y8TPqjWdM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "79b3d4bcae8c7007c9fd51c279a8a67acfa73a2a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "79b3d4bcae8c7007c9fd51c279a8a67acfa73a2a",
+        "type": "github"
+      }
+    },
     "master": {
       "locked": {
         "lastModified": 1746370742,
@@ -118,6 +134,24 @@
         "type": "github"
       }
     },
+    "pylon-software": {
+      "inputs": {
+        "libtiffnixpkgs": "libtiffnixpkgs",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 0,
+        "narHash": "sha256-r+N3fHdzolQmQwMApbcJIbC4mhmqaf04TDUp/uVuUy8=",
+        "path": "/home/simon/Workspace/Work/ESAB/Adaptio/PC/pylon-software/",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/simon/Workspace/Work/ESAB/Adaptio/PC/pylon-software/",
+        "type": "path"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -127,6 +161,7 @@
         "nixpkgs": [
           "unstable"
         ],
+        "pylon-software": "pylon-software",
         "spicetify-nix": "spicetify-nix",
         "stable": "stable",
         "tosibox-key": "tosibox-key",

@@ -118,6 +118,7 @@
       za = "zellij attach";
       zs = "zellij --session";
       sshn = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no";
+      scpn = "scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no";
     };
   };
 

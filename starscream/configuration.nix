@@ -18,7 +18,7 @@
     users.simon = {
       description = "Simon Kämpe";
       isNormalUser = true;
-      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "libvirtd" "plugdev" "kvm" "adbusers" ];
+      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "libvirtd" "plugdev" "kvm" "adbusers" "wireshark" ];
       initialPassword = "changethis";
       shell = pkgs.fish;
     };
@@ -49,6 +49,12 @@
     };
 
     virt-manager.enable = true;
+
+    wireshark = {
+      enable = true;
+      dumpcap.enable = true;
+      usbmon.enable = true;
+    };
   };
 
   virtualisation = {
@@ -188,6 +194,8 @@
         nodejs
         stdenv.cc.cc.lib
       ]))
+
+      zed-editor
 
       # Dev tools
       git
