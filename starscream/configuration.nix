@@ -18,7 +18,7 @@
     users.simon = {
       description = "Simon Kämpe";
       isNormalUser = true;
-      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "libvirtd" "plugdev" "kvm" "adbusers" "wireshark" ];
+      extraGroups = [ "wheel" "docker" "lp" "networkmanager" "libvirtd" "plugdev" "kvm" "adbusers" "wireshark" "dialout" ];
       initialPassword = "changethis";
       shell = pkgs.fish;
     };
@@ -27,9 +27,29 @@
   networking = {
     hostName = "starscream";
     networkmanager.enable = true;
-    extraHosts = ''
-      192.168.101.151 adaptio.local
-    '';
+    # nftables = {
+    #   enable = true;
+    #   tables = {
+    #     # Make tailscale net accessible even when mullvad is enabled
+    #     mullvad_tailscale = {
+    #       content = ''
+    #         chain output {
+    #           type route hook output priority -100; policy accept;
+    #           ip daddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+    #         }
+
+    #         chain input {
+    #           type filter hook input priority -100; policy accept;
+    #           ip saddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+    #         }
+    #       '';
+    #       family = "inet";
+    #     };
+    #   };
+    # };
+    #extraHosts = ''
+    #  192.168.101.151 adaptio.local
+    #'';
   };
 
   programs = {
@@ -41,6 +61,13 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+    };
+
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
     };
 
     tosibox-key = {
@@ -111,6 +138,20 @@
       updater.enable = true;
     };
 
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn;
+    };
+
+    nextjs-ollama-llm-ui = {
+      enable = true;
+    };
+
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+    };
+
     printing = {
       enable = true;
       drivers = with pkgs; [
@@ -119,6 +160,8 @@
         epsonscan2
       ];
     };
+
+    resolved.enable = true;
 
     sunshine = {
       enable = true;
@@ -177,7 +220,7 @@
       discord
 
       # Note taking
-      #obsidian
+      obsidian
 
       # Anti-virus
       clamav
@@ -199,6 +242,7 @@
 
       # Dev tools
       git
+      mercurial
       jujutsu
       qemu
       sqlite
@@ -207,6 +251,7 @@
       # Tooling
       wireshark
       teamviewer
+      ghidra
 
       # System utilities
 

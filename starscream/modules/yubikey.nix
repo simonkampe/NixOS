@@ -21,7 +21,6 @@
     yubioath-flutter
     yubikey-manager
     yubico-pam
-    yubikey-personalization-gui
     age-plugin-yubikey
     yubikey-touch-detector
   ];

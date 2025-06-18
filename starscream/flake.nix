@@ -19,6 +19,9 @@
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     master.url = "github:NixOS/nixpkgs/master";
 
+    # Templates
+    templates.url = "github:NixOS/templates/master";
+
     # Utilities
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 

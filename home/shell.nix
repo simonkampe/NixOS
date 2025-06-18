@@ -169,6 +169,7 @@
       mouse_mode = false;
       pane_viewport_serialization = true;
       scrollback_lines_to_serialize = 1000;
+      pane_frames = false;
 
       ui = {
         pane_frames = {
