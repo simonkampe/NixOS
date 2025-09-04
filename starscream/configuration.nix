@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
 
     ./modules/kde.nix
-    #./modules/ai.nix
+    ./modules/ai.nix
     ./modules/locale.nix
     ./modules/nix.nix
     ./modules/yubikey.nix
@@ -82,10 +82,16 @@
       dumpcap.enable = true;
       usbmon.enable = true;
     };
+
+    #zoom-us.enable = true;
   };
 
   virtualisation = {
     docker.enable = true;
+    #podman = {
+    #  enable = true;
+    #  defaultNetwork.settings.dns_enabled = true;
+    #};
     spiceUSBRedirection.enable = true;
 
     #vmware.host = {
@@ -139,17 +145,8 @@
     };
 
     mullvad-vpn = {
-      enable = true;
+      enable = false;
       package = pkgs.mullvad-vpn;
-    };
-
-    nextjs-ollama-llm-ui = {
-      enable = true;
-    };
-
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
     };
 
     printing = {
@@ -230,6 +227,7 @@
       jetbrains.rust-rover
       jetbrains.pycharm-professional
       jetbrains.webstorm
+      jetbrains.idea-ultimate
 
       android-studio
 
@@ -246,7 +244,9 @@
       jujutsu
       qemu
       sqlite
-      azure-cli
+      #azure-cli
+      bruno
+      #podman-tui
 
       # Tooling
       wireshark

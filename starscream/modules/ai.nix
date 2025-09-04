@@ -5,18 +5,23 @@
     # AI
     ollama = {
       enable = true;
-      acceleration = "cuda";
+      acceleration = false;
+      #acceleration = "cuda";
     };
 
     # Ollama GUI
-    open-webui.enable = true;
+    # open-webui.enable = true;
+
+    nextjs-ollama-llm-ui = {
+      enable = true;
+    };
   };
 
-  boot.extraModulePackages = with pkgs; [
-    intel-npu-driver
-  ];
+  # boot.extraModulePackages = with pkgs; [
+  #   intel-npu-driver
+  # ];
 
-  hardware.firmware = with pkgs; [
-    intel-npu-driver.firmware
-  ];
+  # hardware.firmware = with pkgs; [
+  #   intel-npu-driver.firmware
+  # ];
 }
