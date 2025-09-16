@@ -24,6 +24,8 @@
       find = "log --all --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(blue)[%an]%Creset' --branches --name-status --grep";
       rah = "!git submodule foreach git clean -ffdq && git submodule foreach git reset --hard && git submodule update --recursive --init";
       amend = "commit --amend --date=now";
+      list-untracked = "!git fetch --prune && git branch -vv | grep -v main | grep origin | grep gone";
+      prune-untracked = "!git fetch --prune && git branch -vv | grep -v main | grep origin | grep gone | awk \"{print \$1}\" | xargs git branch -d";
     };
 
     # Include an identity file, for example:
