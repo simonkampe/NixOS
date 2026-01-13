@@ -8,6 +8,8 @@
     cpu.intel.updateMicrocode = true;
     bluetooth.enable = true;
 
+    keyboard.uhk.enable = true;
+
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -101,12 +103,25 @@
     fileSystems."/" =
       { device = "/dev/disk/by-label/root";
         fsType = "btrfs";
+        options = [
+          "compress=zstd"
+          "space_cache=v2"
+          "noatime"
+          "commit=120"
+        ];
       };
 
     fileSystems."/data" =
       { device = "/dev/disk/by-label/data";
         fsType = "btrfs";  
-        options = [ "defaults" "nofail" ];
+        options = [
+          "defaults"            
+          "nofail"
+          "compress=zstd"
+          "space_cache=v2"
+          "noatime"
+          "commit=120"
+        ];
       };
 
     fileSystems."/boot" =

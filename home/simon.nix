@@ -37,6 +37,8 @@
   home.packages = with pkgs; [
     # Shell
     any-nix-shell
+    nil
+    nixd
   ];
 
   age.secrets = {

@@ -53,7 +53,6 @@
   };
 
   programs = {
-    adb.enable = true;
     fish.enable = true;
     
     gamemode.enable = true;
@@ -195,13 +194,13 @@
 
     pathsToLink = [ "/share/nix-direnv" ];
 
-    systemPackages = with pkgs; [
+    systemPackages = with pkgs.unstable; [
       # Browsers
       brave
       chromium
 
       # Office
-      onlyoffice-bin_latest
+      onlyoffice-desktopeditors
       synology-drive-client
       simple-scan
 
@@ -225,9 +224,9 @@
       # IDEs
       jetbrains.clion
       jetbrains.rust-rover
-      jetbrains.pycharm-professional
+      jetbrains.pycharm
       jetbrains.webstorm
-      jetbrains.idea-ultimate
+      jetbrains.idea
 
       android-studio
 
@@ -241,17 +240,17 @@
       # Dev tools
       git
       mercurial
-      jujutsu
       qemu
       sqlite
       #azure-cli
       bruno
       #podman-tui
+      android-tools
 
       # Tooling
       wireshark
       teamviewer
-      ghidra
+      #ghidra
 
       # System utilities
 
@@ -264,11 +263,12 @@
       bridge-utils
 
       ## Hardware
-      glxinfo
+      mesa-demos
       pciutils
       usbutils
       inxi
       nvtopPackages.full
+      uhk-agent
 
       ## Utilities
       tpm2-tss

@@ -9,6 +9,7 @@
     inputs.spicetify-nix.homeManagerModules.default
 
     ../../home/git.nix
+    ../../home/jj.nix
     ../../home/gpg.nix
     ../../home/helix.nix
 

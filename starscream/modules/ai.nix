@@ -5,7 +5,7 @@
     # AI
     ollama = {
       enable = true;
-      acceleration = false;
+      package = pkgs.ollama-cpu;
       #acceleration = "cuda";
     };
 

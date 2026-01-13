@@ -3,7 +3,7 @@
 {
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
+    package = pkgs.gitFull;
 
     aliases = {
       br = "branch -vv";
@@ -36,8 +36,10 @@
       { path = "~/.config/git/gitidentity"; }
     ];
 
+
     extraConfig = {
       core = {
+        fsync = "";
         editor = "hx";
         autocrlf = "input";
       };

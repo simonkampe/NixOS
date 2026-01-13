@@ -15,7 +15,7 @@
     nixpkgs.follows = "unstable";
 
     # Extra channels
-    stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     master.url = "github:NixOS/nixpkgs/master";
 
@@ -78,7 +78,7 @@
         tosibox = inputs.tosibox-key.packages.${final.system}.default;
         agenix = agenix.packages.${final.system}.default;
 
-        intel-npu-driver = import ./pkgs/intel-npu-driver.nix { pkgs = final; };
+        #intel-npu-driver = import ./pkgs/intel-npu-driver.nix { pkgs = final; };
       })
     ];
   in
