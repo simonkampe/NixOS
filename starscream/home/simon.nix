@@ -6,7 +6,7 @@
 
   imports = [
     inputs.agenix.homeManagerModules.age
-    inputs.spicetify-nix.homeManagerModules.default
+    #inputs.spicetify-nix.homeManagerModules.default
 
     ../../home/git.nix
     ../../home/jj.nix
@@ -18,6 +18,7 @@
       prepend_shell = ''
         set -gx GITHUB_TOKEN $(cat ${builtins.replaceStrings [ "\${XDG_RUNTIME_DIR}/" ] [ "/run/user/1000/" ] config.age.secrets.github-token.path})
         set -gx GITLAB_TOKEN $(cat ${builtins.replaceStrings [ "\${XDG_RUNTIME_DIR}/" ] [ "/run/user/1000/" ] config.age.secrets.gitlab-token.path} | sed -E 's|.*:(.*)|\1|')
+        set -gx APAX_TOKEN $(cat ${builtins.replaceStrings [ "\${XDG_RUNTIME_DIR}/" ] [ "/run/user/1000/" ] config.age.secrets.apax-token.path})
       '';
     })
   ];
@@ -37,6 +38,7 @@
   age.secrets = {
     gitlab-token.file = /home/simon/.secrets/gitlab-token.age;
     github-token.file = /home/simon/.secrets/github-token.age;
+    apax-token.file = /home/simon/.secrets/apax-token.age;
   };
 
   nix.extraOptions = ''
@@ -48,21 +50,21 @@
     nix-direnv.enable = true;
   };
 
-  programs.spicetify =
-  let
-    spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-  in {
-    enable = true;
+  #programs.spicetify =
+  #let
+    #spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  #in {
+    #enable = true;
 
-    enabledExtensions = with spicePkgs.extensions; [
-      adblock
-      #hidePodcasts
-      #shuffle # shuffle+ (special characters are sanitized out of extension names)
-    ];
+    #enabledExtensions = with spicePkgs.extensions; [
+      #adblock
+      ##hidePodcasts
+      ##shuffle # shuffle+ (special characters are sanitized out of extension names)
+    #];
 
-    theme = spicePkgs.themes.sleek;
-    colorScheme = "Nord";
-  };
+    #theme = spicePkgs.themes.sleek;
+    #colorScheme = "Nord";
+  #};
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

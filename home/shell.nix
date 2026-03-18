@@ -104,9 +104,8 @@
 
     shellAbbrs = {
       clion = "clion . 1>/dev/null 2>&1 &";
-      idea = "idea-ultimate . 1>/dev/null 2>&1 &";
-      pycharm-ce = "pycharm-community . 1>/dev/null 2>&1 &";
-      pycharm = "pycharm-professional . 1>/dev/null 2>&1 &";
+      idea = "idea . 1>/dev/null 2>&1 &";
+      pycharm = "pycharm . 1>/dev/null 2>&1 &";
       webstorm = "webstorm . 1>/dev/null 2>&1 &";
       rider = "rider . 1>/dev/null 2>&1 &";
       rust-rover = "rust-rover . 1>/dev/null 2>&1 &";

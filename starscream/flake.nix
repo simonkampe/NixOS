@@ -38,7 +38,7 @@
     tosibox-key = {
       #url = "git+ssh://simon@zeus/data/git/tosibox-key.git?ref=main";
       #url = "git+ssh://git@gitlab.com/esab/abw/tosibox-key.git?ref=flake";
-      url = "path:///home/simon/Workspace/Personal/tosibox-key/";
+      url = "path:///data/Workspace/Personal/tosibox-key/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -63,11 +63,13 @@
         stable = import inputs.stable {
           system = final.system;
           config.allowUnfree = true;
+          config.android_sdk.accept_license = true;
         };
 
         unstable = import inputs.unstable {
           system = final.system;
           config.allowUnfree = true;
+          config.android_sdk.accept_license = true;
         };
 
         master = import inputs.master {

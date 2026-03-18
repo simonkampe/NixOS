@@ -36,6 +36,15 @@
       { path = "~/.config/git/gitidentity"; }
     ];
 
+    ignores = [
+      "*~"
+      "*.swp"
+      ".direnv"
+      "devbox.json"
+      "devbox.lock"
+      ".devbox"
+      ".envrc"
+    ];
 
     extraConfig = {
       core = {

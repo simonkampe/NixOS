@@ -1,6 +1,33 @@
 { inputs, config, lib, pkgs, ... } :
 
-{
+let
+  android-env = pkgs.androidenv.override { licenseAccepted = true; };
+  android-sdk =
+    (android-env.composeAndroidPackages {
+      cmdLineToolsVersion = "8.0";
+      includeNDK = true;
+      platformVersions = [ "36" "33" "30" ];
+      buildToolsVersions = [ "latest" "34.0.0" ];
+      includeEmulator = true;
+      includeSystemImages = true;
+      systemImageTypes = [ "default" ];
+      abiVersions = [
+        "x86"
+        "x86_64"
+        "armeabi-v7a"
+        "arm64-v8a"
+      ];
+      cmakeVersions = [ "3.10.2" ];
+    }).androidsdk;
+
+    android-studio-custom = (pkgs.android-studio.withSdk android-sdk);
+in {
+  environment.sessionVariables = {
+    ANDROID_HOME = "${android-sdk}/libexec/android-sdk";
+    ANDROID_SDK_ROOT = "${android-sdk}/libexec/android-sdk";
+    ANDROID_NDK_ROOT = "${android-sdk}/libexec/android-sdk/ndk-bundle";
+  };
+  
   imports = [
     ./hardware-configuration.nix
 
@@ -137,6 +164,8 @@
       };
     };
 
+    blueman.enable = true;
+
     # Anti-virus
     clamav = {
       daemon.enable = true;
@@ -214,6 +243,7 @@
 
       # Social
       discord
+      slack
 
       # Note taking
       obsidian
@@ -228,12 +258,14 @@
       jetbrains.webstorm
       jetbrains.idea
 
-      android-studio
+      android-studio-custom
 
       (vscodium.fhsWithPackages (ps: with ps; [
         nodejs
         stdenv.cc.cc.lib
       ]))
+      
+      vscode.fhs
 
       zed-editor
 
@@ -246,6 +278,8 @@
       bruno
       #podman-tui
       android-tools
+      arduino
+      devbox
 
       # Tooling
       wireshark
