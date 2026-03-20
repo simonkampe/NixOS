@@ -9,6 +9,7 @@
     ./hardware/uhk.nix
     ./hardware/yubikey.nix
     ./hardware/zsa.nix
+    ./programs/ghidra.nix
     ./programs/steam.nix
     ./programs/wireshark.nix
   ];
