@@ -1,0 +1,17 @@
+[alias]
+b = "build"
+c = "check"
+t = "test"
+r = "run"
+rr = "run --release"
+space_example = ["run", "--release", "--", "\"command list\""]
+
+[build]
+jobs = 8 # number of parallel jobs, defaults to # of CPUs
+
+[term]
+quiet = false          # whether cargo output is quiet
+verbose = false        # whether cargo provides verbose output
+color = 'auto'         # whether cargo colorizes output
+progress.when = 'auto' # whether cargo shows progress bar
+progress.width = 80    # width of progress bar
