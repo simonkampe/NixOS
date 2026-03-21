@@ -27,6 +27,7 @@ in with pkgs; lib.flatten [
   slurp
   upower
   gpu-screen-recorder
+  grim
 
   mkAllScripts
 ]
