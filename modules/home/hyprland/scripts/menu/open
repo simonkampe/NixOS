@@ -48,10 +48,9 @@ terminal() {
 }
 
 show_trigger_menu() {
-  case $(menu "Trigger" "  Capture\n  Share\n󰔎  Toggle\n  Hardware") in
+  case $(menu "Trigger" "  Capture\n  Share\n  Hardware") in
   *Capture*) show_capture_menu ;;
   *Share*) show_share_menu ;;
-  *Toggle*) show_toggle_menu ;;
   *Hardware*) show_hardware_menu ;;
   *) show_main_menu ;;
   esac
@@ -123,13 +122,13 @@ show_share_menu() {
 show_toggle_menu() {
   case $(menu "Toggle" "󰔎  Nightlight\n󱫖  Idle Lock\n󰍜  Top Bar\n󱂬  Workspace Layout\n  Window Gaps\n  1-Window Ratio\n󰍹  Display Scaling") in
 
-  *Nightlight*) omarchy-toggle-nightlight ;;
-  *Idle*) omarchy-toggle-idle ;;
-  *Bar*) omarchy-toggle-waybar ;;
-  *Layout*) omarchy-hyprland-workspace-layout-toggle ;;
-  *Ratio*) omarchy-hyprland-window-single-square-aspect-toggle ;;
-  *Gaps*) omarchy-hyprland-window-gaps-toggle ;;
-  *Scaling*) omarchy-hyprland-monitor-scaling-cycle ;;
+  *Nightlight*) toggle-nightlight ;;
+  *Idle*) toggle-idle ;;
+  *Bar*) toggle-waybar ;;
+  *Layout*) hyprland-workspace-layout-toggle ;;
+  *Ratio*) hyprland-window-single-square-aspect-toggle ;;
+  *Gaps*) hyprland-window-gaps-toggle ;;
+  *Scaling*) hyprland-monitor-scaling-cycle ;;
   *) back_to show_trigger_menu ;;
   esac
 }
@@ -183,7 +182,7 @@ show_system_menu() {
 }
 
 show_main_menu() {
-  go_to_menu "$(menu "Go" "󱓞  Trigger\n󱓞  Toggle\n  Setup\n  System")"
+  go_to_menu "$(menu "Go" "󱓞  Trigger\n󰔎  Toggle\n  Setup\n  System")"
 }
 
 go_to_menu() {
