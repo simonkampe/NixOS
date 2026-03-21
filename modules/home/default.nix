@@ -8,5 +8,7 @@
     ./helix.nix
     ./jj.nix
     ./shell.nix
+
+    ./hyprland/default.nix
   ];
 }

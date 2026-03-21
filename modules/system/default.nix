@@ -3,6 +3,7 @@
 {
   imports = [
     ./desktop/kde.nix
+    ./desktop/hyprland.nix
     ./dev/docker.nix
     ./dev/qemu.nix
     ./hardware/buspirate.nix

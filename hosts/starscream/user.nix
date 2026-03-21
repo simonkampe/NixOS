@@ -11,6 +11,7 @@
         git.enable = true;
         gpg.enable = true;
         helix.enable = true;
+        hyprland.enable = true;
         jj.enable = true;
         shell = {
           enable = true;

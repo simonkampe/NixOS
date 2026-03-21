@@ -7,7 +7,8 @@
 
   config = {
     modules.system = {
-      desktop.kde.enable = true;
+      desktop.kde.enable = false;
+      desktop.hyprland.enable = true;
       dev.docker = { enable = true; user = "simon"; };
       dev.qemu.enable = true;
       hardware.buspirate.enable = true;
